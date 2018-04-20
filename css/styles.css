@@ -1,0 +1,93 @@
+/* ESTILOS DE CABECERA */
+div.cabecera{
+	background-color: blue;
+	overflow:auto;
+	height: 50px;
+}
+
+div.saludo {
+	float:right;
+	width: 15%;
+	border-style: groove;
+	color: white;
+	margin-right: 2%;
+}
+div.saludo a {
+	float: right;
+	font-size: large;
+	font-weight: bold;
+}
+
+ul.head-menu {
+    list-style-type: none;
+	float:left;
+	width: 45%;
+	height: 100%;
+	margin: 0;
+}
+ul.head-menu li {
+	display: block;
+    float: left;
+	padding-right: 6%;
+	padding-left: 6%;
+	height: 100%;
+	font-size: large;
+	font-weight: bold;
+}
+ul.head-menu li:hover {
+    background-color: cyan;
+	overflow: auto;
+}
+ul.head-menu li:hover a {
+   color: black;
+}
+
+/* ESTILOS DEL MENU USUARIO */
+div.menu-usuario {
+	margin: 5px;
+	float: left;
+	border-style: solid;
+	width: 15%;
+}
+
+/* GENERICOS */
+div.cuerpo {
+	background-color: white;
+}
+
+fieldset.formulario-contacto {
+    display: block;
+    margin-left: 2px;
+	margin-right: 2px;
+    padding-top: 0.35em;
+    padding-bottom: 0.625em;
+    padding-left: 0.75em;
+    padding-right: 0.75em;
+}
+
+/* ESTILOS DEL INDEX */
+div.portada {
+	margin: 5px;
+	float: left;
+	min-height: 20%;
+	background-color: white;
+	border-style: outset;
+	width: 80%;
+	padding: 10px;
+}
+
+/* OTROS */
+.hidden { display:none;}
+.showen { display: block;}
+a.white-link { color: white;}
+a.white-link:hover {
+	color: black;
+	background-color: cyan;
+	overflow: auto;
+}
+a.plain-link { text-decoration: none;}
+.vertical-centered {
+	position: relative;
+	top: 50%;
+	transform: translateY(-50%);
+}
