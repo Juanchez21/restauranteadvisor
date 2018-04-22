@@ -16,14 +16,12 @@
 			<a class="vertical-centered plain-link white-link" href="contacto.php">Desayuno</a>
 		</li>
 		<li>
-			<a class="vertical-centered plain-link white-link" href="contacto.php">Restaurantes Baratos</a>
+			<a class="vertical-centered plain-link white-link" href="contacto.php">Mejores Precios</a>
 		</li>
 		<li>
 			<a class="vertical-centered plain-link white-link" href="contacto.php">Contacto</a>
 		</li>
 	</ul>
-	<div class="saludo vertical-centered">
-		Usuario anónimo
-		<a class="plain-link white-link" href="login.php">Login</a>
+	<div class="saludo vertical-centered">Usuario anónimo<a class="plain-link white-link" href="login.php">Login</a>
 	</div>
 </div>
