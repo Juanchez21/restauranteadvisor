@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.4
+-- version 4.7.9
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 22-04-2018 a las 15:09:31
--- Versión del servidor: 10.1.30-MariaDB
--- Versión de PHP: 7.2.1
+-- Tiempo de generación: 22-04-2018 a las 22:27:58
+-- Versión del servidor: 10.1.31-MariaDB
+-- Versión de PHP: 7.2.3
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -30,36 +30,55 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `categorias` (
   `id_categoria` int(11) NOT NULL,
-  `nombre` varchar(11) COLLATE utf8_spanish_ci NOT NULL,
-  `clave` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+  `nombre` varchar(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Volcado de datos para la tabla `categorias`
+--
+
+INSERT INTO `categorias` (`id_categoria`, `nombre`) VALUES
+(1, 'Cenas'),
+(2, 'Comidas'),
+(3, 'Desayuno'),
+(4, 'Mejores Precios');
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `editores`
+-- Estructura de tabla para la tabla `restaurantes`
 --
 
-CREATE TABLE `editores` (
-  `id_editor` int(11) NOT NULL,
-  `nombre` varchar(11) COLLATE utf8_spanish_ci NOT NULL,
-  `contrasena` varchar(80) COLLATE utf8_spanish_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `restaurante`
---
-
-CREATE TABLE `restaurante` (
+CREATE TABLE `restaurantes` (
   `id_restaurante` int(11) NOT NULL,
-  `nombre` varchar(11) COLLATE utf8_spanish_ci NOT NULL,
+  `categoria` int(1) NOT NULL,
+  `nombre` varchar(30) NOT NULL,
   `apertura` datetime NOT NULL,
-  `direccion` varchar(30) COLLATE utf8_spanish_ci NOT NULL,
-  `imagen` varchar(30) COLLATE utf8_spanish_ci NOT NULL,
+  `direccion` varchar(150) NOT NULL,
+  `imagen` varchar(50) NOT NULL,
   `editor` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `usuarios`
+--
+
+CREATE TABLE `usuarios` (
+  `id_usuario` int(11) NOT NULL,
+  `login` varchar(20) NOT NULL,
+  `contrasena` varchar(80) NOT NULL,
+  `nombre` varchar(60) NOT NULL,
+  `perfil` int(1) NOT NULL DEFAULT '1'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Volcado de datos para la tabla `usuarios`
+--
+
+INSERT INTO `usuarios` (`id_usuario`, `login`, `contrasena`, `nombre`, `perfil`) VALUES
+(1, 'admin', 'admin', 'Administrador', 0);
 
 --
 -- Índices para tablas volcadas
@@ -72,16 +91,16 @@ ALTER TABLE `categorias`
   ADD PRIMARY KEY (`id_categoria`);
 
 --
--- Indices de la tabla `editores`
+-- Indices de la tabla `restaurantes`
 --
-ALTER TABLE `editores`
-  ADD PRIMARY KEY (`id_editor`);
+ALTER TABLE `restaurantes`
+  ADD PRIMARY KEY (`id_restaurante`);
 
 --
--- Indices de la tabla `restaurante`
+-- Indices de la tabla `usuarios`
 --
-ALTER TABLE `restaurante`
-  ADD PRIMARY KEY (`id_restaurante`);
+ALTER TABLE `usuarios`
+  ADD PRIMARY KEY (`id_usuario`);
 
 --
 -- AUTO_INCREMENT de las tablas volcadas
@@ -91,19 +110,19 @@ ALTER TABLE `restaurante`
 -- AUTO_INCREMENT de la tabla `categorias`
 --
 ALTER TABLE `categorias`
-  MODIFY `id_categoria` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_categoria` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- AUTO_INCREMENT de la tabla `editores`
+-- AUTO_INCREMENT de la tabla `restaurantes`
 --
-ALTER TABLE `editores`
-  MODIFY `id_editor` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT de la tabla `restaurante`
---
-ALTER TABLE `restaurante`
+ALTER TABLE `restaurantes`
   MODIFY `id_restaurante` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `usuarios`
+--
+ALTER TABLE `usuarios`
+  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
