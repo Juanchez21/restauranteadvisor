@@ -65,6 +65,7 @@ div.menu-usuario {
 /* GENERICOS */
 div.cuerpo {
 	background-color: white;
+	padding-top: 50px;
 }
 
 fieldset.formulario-contacto {
