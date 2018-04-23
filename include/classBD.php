@@ -1,6 +1,11 @@
 <?php
 class classBD {
 	private static $instancia;
+	private $bdDatosConexion;
+	private $inicializada = false;
+	private $conn;
+	
+	private function __construct() {}
 
 	public static function getSingleton() {
 		if (  !self::$instancia instanceof self) {
@@ -8,12 +13,6 @@ class classBD {
 		}
 		return self::$instancia;
 	}
-
-	private $bdDatosConexion;
-	private $inicializada = false;
-	private $conn;
-
-	private function __construct() {}
 
 	private function __clone(){
 	    parent::__clone();
