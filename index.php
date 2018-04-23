@@ -5,9 +5,9 @@
 	<link rel="stylesheet" type="text/css" href="css/styles.css">
 </head>
 <body>
-	<?php require ('cabecera.php');?>
+	<?php require ('include/comun/cabecera.php');?>
 	<div class="cuerpo">
-		<?php require ('menu_usuario.php');?>
+		<?php require ('include/comun/menu_usuario.php');?>
 		<div class="portada">
 			<h1>Página principal</h1>
 			<p> Aquí está la portada, que ya la haremos </p>

@@ -7,16 +7,16 @@
 			<a class="vertical-centered plain-link white-link" href="index.php">Inicio</a>
 		</li>
 		<li>
-			<a class="vertical-centered plain-link white-link" href="contacto.php">Cenas</a>
+			<a class="vertical-centered plain-link white-link" href="index.php?categoria=1">Cenas</a>
 		</li>
 		<li>
-			<a class="vertical-centered plain-link white-link" href="contacto.php">Comidas</a>
+			<a class="vertical-centered plain-link white-link" href="index.php?categoria=2">Comidas</a>
 		</li>
 		<li>
-			<a class="vertical-centered plain-link white-link" href="contacto.php">Desayuno</a>
+			<a class="vertical-centered plain-link white-link" href="index.php?categoria=3">Desayuno</a>
 		</li>
 		<li>
-			<a class="vertical-centered plain-link white-link" href="contacto.php">Mejores Precios</a>
+			<a class="vertical-centered plain-link white-link" href="index.php?categoria=4">Mejores Precios</a>
 		</li>
 		<li>
 			<a class="vertical-centered plain-link white-link" href="contacto.php">Contacto</a>

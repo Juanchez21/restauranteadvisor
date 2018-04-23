@@ -6,9 +6,9 @@
 	<title>Contacto</title>
 </head>
 <body>
-	<?php require ('cabecera.php'); ?>
+	<?php require ('include/comun/cabecera.php'); ?>
 	<div class="cuerpo">
-		<?php require ('menu_usuario.php');?>
+		<?php require ('include/comun/menu_usuario.php');?>
 		<div class="portada">
 			<h1>Contacto</h1>
 			<fieldset class="formulario-contacto">
