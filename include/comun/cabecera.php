@@ -1,3 +1,12 @@
+<?php 
+if(!isset($_SESSION['sesion'])){ 
+	$nombre = 'Usuario Desconocido'; 
+	$fullLine = $nombre.'<a class="plain-link white-link" href="login.php">Login</a>';
+} 
+else{ 
+	$nombre = $_SESSION['nombre'];
+	$fullLine = $nombre.'<a class="plain-link white-link" href="/include/logout.php">Salir</a>';
+} ?>
 <div class="cabecera">
 	<ul class="head-menu">
 		<li>
@@ -22,6 +31,6 @@
 			<a class="vertical-centered plain-link white-link" href="contacto.php">Contacto</a>
 		</li>
 	</ul>
-	<div class="saludo vertical-centered">Usuario anónimo<a class="plain-link white-link" href="login.php">Login</a>
-	</div>
+	
+	<div class="saludo vertical-centered"><?php echo $fullLine; ?></div>
 </div>

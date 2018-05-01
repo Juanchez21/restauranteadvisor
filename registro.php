@@ -3,16 +3,17 @@ require_once("include/config.php");
 require_once("include/tUsuario.php");
 require_once("include/classUsuario.php");
 
-if(isset($_POST['submit']) && isset($_POST['login']) && isset($_POST['password'])){
+if(isset($_POST['submit']) && isset($_POST['login']) && isset($_POST['nombre'])&& isset($_POST['password'])	&& isset($_POST['password2'])){
 	$usuario = new tUsuario();
 	$claseUsuario = new Usuario();
 	
 	$usuario->setLogin($_POST["login"]);
+	$usuario->setNombre($_POST["nombre"]);
 	$usuario->setContrasena($_POST["password"]);
-	$error = $claseUsuario->validaLogin($usuario);
+	$error = $claseUsuario->validaRegistro($usuario, $_POST['password2']);
 	
-	if (empty($error)) {// el login se ha realizado correctamente
-		header("Location: /index.php");
+	if (empty($error)) {// el registro se ha realizado correctamente
+		header("Location: /login.php");
 		exit;
 	}
 }
@@ -36,16 +37,22 @@ if(isset($_POST['submit']) && isset($_POST['login']) && isset($_POST['password']
 						}
 					}
 				?>
-				<form method="post" action="login.php">
+				<form method="post" action="registro.php">
 				<fieldset>
-				<legend>Login</legend>
+				<legend>Registro</legend>
 					<label class="text-left">Usuario: </label>
 					<input type="text" placeholder="Usuario" name="login" class="text-right" required>
+					<br><br>
+					<label class="text-left">Nombre: </label>
+					<input type="text" placeholder="Nombre" name="nombre" class="text-right" required>
 					<br><br>
 					<label class="text-left">Contraseña: </label>
 					<input type="password" placeholder="Contraseña" name="password" class="text-right" required>
 					<br><br>
-					<button class="max-width" type="submit" name="submit">Login</button>
+					<label class="text-left">Confirma Contraseña: </label>
+					<input type="password" placeholder="Contraseña" name="password2" class="text-right" required>
+					<br><br>
+					<button class="max-width" type="submit" name="submit">Registro</button>
 				</fieldset>
 				</form>
 			</div>

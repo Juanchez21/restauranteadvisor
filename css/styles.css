@@ -91,6 +91,16 @@ div.portada {
 	width: 80%;
 }
 
+/* ESTILOS DE LOGIN Y REGISTRO */
+div.login-form {
+	padding: 10px;
+	text-align: center;
+	height: 100%;
+	width: 50%;
+	margin-left:25%;
+	margin-right:25%;
+}
+
 /* OTROS */
 .hidden { display:none;}
 .showen { display: block;}
@@ -105,4 +115,18 @@ a.plain-link { text-decoration: none;}
 	position: relative;
 	top: 50%;
 	transform: translateY(-50%);
+}
+.text-left {
+	float:left;
+	clear:left;
+}
+.text-right {
+	float:right;
+	clear: right;
+}
+.max-width{width: 100%; clear: both;}
+.error-msg {
+    vertical-align:middle;
+	color: #D8000C;
+    background-color: #FFD2D2;
 }

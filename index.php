@@ -1,3 +1,6 @@
+<?php 
+require_once("include/config.php");
+?>
 <!DOCTYPE html>
 <html lang="es">
 <head> <title>Index</title>
