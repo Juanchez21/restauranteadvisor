@@ -15,4 +15,15 @@ $bd = classBD::getSingleton();
 $bd->init(array('host'=>BD_HOST, 'bd'=>BD_NAME, 'user'=>BD_USER, 'pass'=>BD_PASS));
 
 register_shutdown_function(array($bd, 'shutdown'));
+
+function esAdmin(){
+	if(isset($_SESSION['sesion']) && $_SESSION['sesion'] && $_SESSION['perfil']==0) { // estamos logueados como administrador
+		return true;
+	}
+	else { // no estamos logueados como administrador
+		$_SESSION['errorAcceso'] = 'Debes estar logueado como administrador para ver ese contenido';
+		header("Location: /login.php");
+		exit;
+	}
+}
 ?>

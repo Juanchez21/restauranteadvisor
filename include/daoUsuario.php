@@ -67,28 +67,25 @@ class DAOUsuario
 		return false;
 	}
 
-	function getAll()
-	{
-		$query = "SELECT * FROM " . $this->table;
-		$pdo = $this->db->conexionBD();
-		$query = $pdo->query($query);
+	function getAll() {
+		$conn = $this->db->conexionBD();
+		$query = sprintf("SELECT * FROM " . $this->table);
+		$query = $conn->query($query);
 		$array_usuarios = array();
 		
-		if($query)
-		{
-			while($fila = $query->fetch(PDO::FETCH_ASSOC))
-			{
+		if($query) {
+			while($fila = $query->fetch_assoc()) {
 				$u = new tUsuario();
-				$u->setId($fila['id']);
+				$u->setId($fila['id_usuario']);
 				$u->setNombre($fila['nombre']);
 				$u->setContrasena($fila['contrasena']);
 				$u->setLogin($fila['login']);
 				$u->setPerfil($fila['perfil']);
 				array_push($array_usuarios,$u);
 			}
-			return $array_productos;
+			return $array_usuarios;
 		}
-			return false;
+		return false;
 	}
 	
 	function update(tUsuario $usuario)
@@ -112,14 +109,14 @@ class DAOUsuario
 
 	}
 
-	function delete(tUsuario $usuario)
+	function deleteById($id)
 	{
-		$pdo = $this->db->conexionBD();
-		$query = "DELETE FROM " . $this->table . " WHERE id = :id";
-		$stmt = $pdo->prepare($query);
-		$stmt->bindValue(':id', $usuario->getId());
-		$stmt->execute();
-		return $stmt->rowCount();
+		$conn = $this->db->conexionBD();
+		$query=sprintf("DELETE FROM " . $this->table . " WHERE id_usuario = ".$id);
+		$rs = $conn->query($query);
+		if($rs)
+			return true;
+		return false;
 	}
 
 }

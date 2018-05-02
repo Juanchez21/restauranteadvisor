@@ -16,6 +16,12 @@ if(isset($_POST['submit']) && isset($_POST['login']) && isset($_POST['password']
 		exit;
 	}
 }
+
+if (isset($_SESSION['errorAcceso'])) {
+	$error = array();
+	$error[0] = $_SESSION['errorAcceso'];
+	unset($_SESSION['errorAcceso']);
+}
 ?>
 <!DOCTYPE html>
 <html lang="es">

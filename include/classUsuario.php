@@ -29,7 +29,7 @@ class Usuario{
 
 	public function borrarUsuario($id)
 	{
-		return $this->daoUsuario->delete($id);
+		return $this->daoUsuario->deleteById($id);
 	}
 
 	public function getUserByLogin($userLogin){
