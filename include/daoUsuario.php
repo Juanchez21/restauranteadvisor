@@ -24,28 +24,25 @@ class DAOUsuario
 		else
 			return false;
 	}
-	/*function getById(tUsuario $usuario)
-	{
-		$pdo = $this->db->conexionBD();
-		$query = "SELECT * FROM " . $this->table . " where id = :id";
-		$stmt = $pdo->prepare($query);
-		$stmt->bindValue(':id', $usuario->getId());
-		$resultado = $stmt->execute();
-		if($resultado && $stmt->rowCount() > 0)
-		{
-			$fila = $stmt->fetch();
+	function getById($id) {
+		$conn = $this->db->conexionBD();
+		$query=sprintf("SELECT * FROM usuarios WHERE id_usuario = ".$id);
+		$rs = $conn->query($query);
+		
+		if ($rs && $rs->num_rows > 0 ) {
+			$fila = $rs->fetch_assoc();
 			
 			$u = new tUsuario();
-			$u->setId($fila['id']);
+			$u->setId($fila['id_usuario']);
 			$u->setNombre($fila['nombre']);
 			$u->setContrasena($fila['contrasena']);
 			$u->setLogin($fila['login']);
 			$u->setPerfil($fila['perfil']);
-			
+			$rs->free();
 			return $u;
 		}
 		return false;
-	}*/
+	}
 
 	function getUserByLogin($userLogin){
 		$conn = $this->db->conexionBD();
@@ -90,23 +87,21 @@ class DAOUsuario
 	
 	function update(tUsuario $usuario)
 	{
-		$pdo = $this->db->conexionBD();
-		$query = 
-		"UPDATE " . 
-		$this->table . " 
-		SET 
-		nombre=:nombre, contrasena=:contrasena, login=:login, perfil=:perfil
-		WHERE
-		id=:id";
-		$stmt = $pdo->prepare($query);
-		$stmt->bindValue(':nombre', $usuario->getNombre());
-		$stmt->bindValue(':contrasena', $usuario->getContrasena());
-		$stmt->bindValue(':login', $usuario->getLogin());
-		$stmt->bindValue(':perfil', $usuario->getPerfil());
-		$stmt->bindValue(':id', $usuario->getId());
+		$id =$usuario->getId();
+		$login =$usuario->getLogin();
+		$contrasena =$usuario->getContrasena();
+		$perfil =$usuario->getPerfil();
+		$nombre = $usuario->getNombre();
+		
+		$sql = $this->db->conexionBD();
+		$query = "UPDATE " . $this->table . " SET nombre=?, contrasena=?, login=?, perfil=? WHERE id_usuario=?";
+		$stmt = $sql->prepare($query);
+		$stmt->bind_param("sssii", $nombre, $contrasena, $login, $perfil, $id);
 
-		return $stmt->execute();
-
+		if($stmt->execute())
+			return true;
+		else
+			return false;
 	}
 
 	function deleteById($id)

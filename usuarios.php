@@ -44,6 +44,7 @@ if(esAdmin()) { // estamos logueados como administrador
 					}
 				?>
 			</table>
+			<a href="/registro.php?add=1"><button> Añadir nuevo usuario </button></a>
 		</div>
 	</div>
 </body>

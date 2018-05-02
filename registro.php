@@ -3,6 +3,17 @@ require_once("include/config.php");
 require_once("include/tUsuario.php");
 require_once("include/classUsuario.php");
 
+$locate = "/login.php";
+
+if( (isset($_SESSION['sesion']) && $_SESSION['sesion']) && !esAdmin() ){
+	header("Location: /index.php");
+	exit;
+}
+
+if(isset($_GET['add']) && $_GET['add'] == 1){
+	$locate = "/usuarios.php";
+}
+
 if(isset($_POST['submit']) && isset($_POST['login']) && isset($_POST['nombre'])&& isset($_POST['password'])	&& isset($_POST['password2'])){
 	$usuario = new tUsuario();
 	$claseUsuario = new Usuario();
@@ -13,7 +24,7 @@ if(isset($_POST['submit']) && isset($_POST['login']) && isset($_POST['nombre'])&
 	$error = $claseUsuario->validaRegistro($usuario, $_POST['password2']);
 	
 	if (empty($error)) {// el registro se ha realizado correctamente
-		header("Location: /login.php");
+		header("Location: ".$locate);
 		exit;
 	}
 }
@@ -37,7 +48,7 @@ if(isset($_POST['submit']) && isset($_POST['login']) && isset($_POST['nombre'])&
 						}
 					}
 				?>
-				<form method="post" action="registro.php">
+				<form method="post" action="<?php echo $_SERVER['PHP_SELF'].'?'.$_SERVER['QUERY_STRING']; ?>">
 				<fieldset>
 				<legend>Registro</legend>
 					<label class="text-left">Usuario: </label>

@@ -13,8 +13,8 @@ class Usuario{
 	public function obtenerUsuario($id)
 	{
 		$usuario = new tUsuario();
-		$usuario->setId($id);
-		return $this->daoUsuario->getById($usuario);
+		//$usuario->setId($id);
+		return $this->daoUsuario->getById($id);
 	}
 
 	public function obtenerTodos()
