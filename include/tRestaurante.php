@@ -6,8 +6,6 @@ class tRestaurante {
 
     private $id_restaurante = "";
 
-    private $categoria = "";
-
     private $apertura = "";
 
     private $nombre = "";
@@ -17,6 +15,10 @@ class tRestaurante {
 	private $imagen = "";
 
 	private $editor = "";
+	
+	private $portada = "";
+	private $orden_portada = "";
+	private $descripcion = "";
 
 		
 
@@ -26,8 +28,6 @@ class tRestaurante {
 
 	public function setNombre( $nombre ){ $this->nombre = $nombre; }
 
-	public function setCategoria( $categoria ){ $this->categoria = $categoria; }
-
 	public function setApertura( $apertura ){ $this->apertura = $apertura; }
 
 	public function setDireccion( $direccion ){ $this->direccion = $direccion; }
@@ -35,6 +35,10 @@ class tRestaurante {
 	public function setImagen( $imagen ){ $this->imagen = $imagen; }
 
 	public function setEditor( $editor ){ $this->editor = $editor; }	
+	
+	public function setPortada( $editor ){ $this->portada = $portada; }
+	public function setOrden( $editor ){ $this->orden_portada = $orden_portada; }
+	public function setDescripcion( $editor ){ $this->descripcion = $descripcion; }
 
 	
 
@@ -44,8 +48,6 @@ class tRestaurante {
 
 	public function getNombre(){ return $this->nombre; }
 
-	public function getCategoria(){ return $this->categoria; }
-
 	public function getApertura(){ return $this->apertura; }
 
 	public function getDireccion(){ return $this->direccion; }	
@@ -53,8 +55,11 @@ class tRestaurante {
 	public function getImagen(){ return $this->imagen; }	
 
 	public function getEditor(){ return $this->editor; }	
+	
+	public function getPortada(){ return $this->portada; }
+	public function getOrden(){ return $this->orden_portada; }
+	public function getDescripcion(){ return $this->descripcion; }
 
 }
-
 ?>
 
