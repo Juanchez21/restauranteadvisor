@@ -1,5 +1,22 @@
 <?php 
 require_once("include/config.php");
+require_once("include/classRestaurante.php");
+
+$restaurantes = new Restaurante();
+
+if(isset($_GET['categoria'])){
+	/*dependiendo de la categoria se mostrara los restaurantes*/
+	//echo 'La categoria seleccionada: '.$_GET['categoria'];
+	$id_categoria = $_GET['categoria'];
+	$array_restaurantes = $restaurantes->getRestaurantesByCategoria($id_categoria);
+	$subtitulo = 'Correspondientes a la Categoria '.$id_categoria.':';
+}
+else{
+	/*que se muestren todos los destacados*/
+	$array_restaurantes = $restaurantes->getAllRestaurantesDestacados();
+	$subtitulo = 'Los más destacados son:';
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -12,6 +29,44 @@ require_once("include/config.php");
 	<div class="cuerpo">
 		<?php require ('include/comun/menu_usuario.php');?>
 		<div class="portada">
+			<h1>Restaurantes:</h1>
+			<h3><?php echo $subtitulo; ?> </h3>
+			
+			<!--LA SIGUIENTE FUNCION ES PARA MOSTRAR LO MISMO QUE HAGO AQUI PERO ES PARA QUITAR CODIGO PHP -->
+			<!-- <?php 
+				//$restaurantes->mostrarRestaurantes($array_restaurantes);
+			?> -->
+
+			<?php
+			$i = 0;
+			$num_total = count($array_restaurantes);
+			while($i < $num_total){
+			$nombre = $array_restaurantes[$i]->getNombre();
+			$categoria = $array_restaurantes[$i]->getCategoria();
+			$imagen = $array_restaurantes[$i]->getImagen();
+			?>
+			
+			<div class = "contenido">
+				<div class = "contenido-restaurante">
+					<a href = "restaurante.php"><img class = "imagen" src = "<?php echo $imagen; ?>" ></a>
+					<div class = "info-restaurante">
+					<a href = "restaurante.php"><div class = "nombre-restaurante">Nombre: <?php echo $nombre; ?> </div></a>
+					<div class = "categoria-restaurante">Categoría: <?php echo $categoria; ?></div>
+					</div>
+				</div>
+				<div class = "comentarios">
+					<div class = "text-comentarios">
+					<?php echo 'Esto es un comentario'; ?>
+					</div>
+				</div>	
+			</div>
+
+			<?php 
+				$i++;}
+			?>
+
+			<!--Esta parte de la pagina, cambiarla y preguntar si son dos columnas-->
+
 			<h1>Página principal</h1>
 			<p> Aquí está la portada, que ya la haremos </p>
 			<h1>The position Property</h1>
