@@ -26,4 +26,15 @@ function esAdmin(){
 		exit;
 	}
 }
+
+function esEditor(){
+	if(isset($_SESSION['sesion']) && $_SESSION['sesion'] && $_SESSION['perfil']==1) { // estamos logueados como editor
+		return true;
+	}
+	else { // no estamos logueados como editor
+		$_SESSION['errorAcceso'] = 'Debes estar logueado como editor para ver ese contenido';
+		header("Location: /login.php");
+		exit;
+	}
+}
 ?>

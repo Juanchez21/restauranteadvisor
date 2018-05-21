@@ -20,6 +20,11 @@ class Restaurante{
 		$restaurante = new tRestaurante();
 		return $this->daoRestaurante->getByIdRestaurante($id);
 	}
+
+	public function ordenPortada($orden, $id)
+	{
+		return $this->daoRestaurante->updateOrdenPortada($orden, $id);
+	}
 	
 	public function obtenerTodosRestaurantes()
 	{
@@ -38,6 +43,12 @@ class Restaurante{
 	
 	public function getRestaurantesByCategoria($id_categoria){
 		return $this->daoRestaurante->getByCategoriaRestaurantes($id_categoria);
+	}
+
+	public function insertarRestaurante(tRestaurante $restaurante){
+		return $this->daoRestaurante->insertRestaurante($restaurante);
+		//ahora con el atributo categoria , se agrega a la tabla de restaurante-categoria
+		
 	}
 
 	/*ver si el metodo insert de ambos DAOS sirven para algo o no? */
@@ -74,8 +85,33 @@ class Restaurante{
 		}
 	}
 
-	public function categoriaSeleccionada($id_categoria){
-		/*creo que esto seria de una clase categoria*/
+	public function validaRestaurante($restaurante, $categoria1, $categoria2, $categoria3, $categoria4){
+		$errores = array();
+
+		if(empty($restaurante->getNombre()) || empty($restaurante->getApertura()) || empty($restaurante->getDireccion()) || empty($restaurante->getEditor()) || empty($restaurante->getPortada()) || empty($restaurante->getDescripcion()))
+			$errores[0] = "No se han introducido todos los datos necesarios";
+
+		
+		if(empty($errores)) {
+			$idRestaurante = $this->daoRestaurante->insertarRestaurante($restaurante); // insertamos el restaurante.
+			if(!$idRestaurante)
+				$errores[1] = "Se ha producido un error al crear el restaurante";
+			else { // se ha creado bien el restaurante, le ponemos las categorias
+				if ( empty($errores) && isset($categoria1) && !$this->daoRestaurante->instertCategoriaRestaurante($idRestaurante, $categoria1) )
+					$errores[2] = "Se ha producido un error al ponerle la categoría al restaurante";
+				
+				if ( empty($errores) && isset($categoria1) && !$this->daoRestaurante->instertCategoriaRestaurante($idRestaurante, $categoria2) )
+					$errores[3] = "Se ha producido un error al ponerle la categoría al restaurante";
+				
+				if ( empty($errores) && isset($categoria1) && !$this->daoRestaurante->instertCategoriaRestaurante($idRestaurante, $categoria3) )
+					$errores[4] = "Se ha producido un error al ponerle la categoría al restaurante";
+				
+				if ( empty($errores) && isset($categoria1) && !$this->daoRestaurante->instertCategoriaRestaurante($idRestaurante, $categoria4) )
+					$errores[5] = "Se ha producido un error al ponerle la categoría al restaurante";
+			}
+		}
+		
+		return $errores;	
 	}
 }
 ?>

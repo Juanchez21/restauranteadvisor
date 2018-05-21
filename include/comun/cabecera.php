@@ -26,7 +26,7 @@ else{
 			<a class="vertical-centered plain-link white-link" href="index.php?categoria=3">Desayuno</a>
 		</li>
 		<li>
-			<a class="vertical-centered plain-link white-link" href="index.php?categoria=4">Mejores Precios</a>
+			<a class="vertical-centered plain-link white-link" href="index.php?categoria=4">Meriendas</a>
 		</li>
 		<li>
 			<a class="vertical-centered plain-link white-link" href="contacto.php">Contacto</a>

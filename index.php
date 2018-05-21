@@ -42,16 +42,17 @@ else{
 			$num_total = count($array_restaurantes);
 			while($i < $num_total){
 			$nombre = $array_restaurantes[$i]->getNombre();
-			$categoria = $array_restaurantes[$i]->getCategoria();
 			$imagen = $array_restaurantes[$i]->getImagen();
+			$id = $array_restaurantes[$i]->getId();
+			//echo $imagen;
 			?>
 			
 			<div class = "contenido">
 				<div class = "contenido-restaurante">
-					<a href = "restaurante.php"><img class = "imagen" src = "<?php echo $imagen; ?>" ></a>
+					<a href = "restaurante.php?id=<?php echo $id; ?>"><img class = "imagen" src = "<?php echo $imagen; ?>" ></a>
 					<div class = "info-restaurante">
-					<a href = "restaurante.php"><div class = "nombre-restaurante">Nombre: <?php echo $nombre; ?> </div></a>
-					<div class = "categoria-restaurante">Categoría: <?php echo $categoria; ?></div>
+					<a href = "restaurante.php?id=<?php echo $id; ?>"><div class = "nombre-restaurante">Nombre: <?php echo $nombre; ?> </div></a>
+					<!--<div class = "categoria-restaurante">Categoría: <?php //echo $categoria; ?></div> -->
 					</div>
 				</div>
 				<div class = "comentarios">
@@ -67,43 +68,6 @@ else{
 
 			<!--Esta parte de la pagina, cambiarla y preguntar si son dos columnas-->
 
-			<h1>Página principal</h1>
-			<p> Aquí está la portada, que ya la haremos </p>
-			<h1>The position Property</h1>
-
-			<h2>This is a heading with an absolute position</h2>
-
-			<p>With absolute positioning, an element can be placed anywhere on a page. The heading below is placed 100px from the left of the page and 150px from the top of the page.</p>
-			<h1>The position Property</h1>
-
-			<h2>This is a heading with an absolute position</h2>
-
-			<p>With absolute positioning, an element can be placed anywhere on a page. The heading below is placed 100px from the left of the page and 150px from the top of the page.</p>
-			<h1>The position Property</h1>
-
-			<h2>This is a heading with an absolute position</h2>
-
-			<p>With absolute positioning, an element can be placed anywhere on a page. The heading below is placed 100px from the left of the page and 150px from the top of the page.</p>
-			<h1>The position Property</h1>
-
-			<h2>This is a heading with an absolute position</h2>
-
-			<p>With absolute positioning, an element can be placed anywhere on a page. The heading below is placed 100px from the left of the page and 150px from the top of the page.</p>
-			<h1>The position Property</h1>
-
-			<h2>This is a heading with an absolute position</h2>
-
-			<p>With absolute positioning, an element can be placed anywhere on a page. The heading below is placed 100px from the left of the page and 150px from the top of the page.</p>
-			<h1>The position Property</h1>
-
-			<h2>This is a heading with an absolute position</h2>
-
-			<p>With absolute positioning, an element can be placed anywhere on a page. The heading below is placed 100px from the left of the page and 150px from the top of the page.</p>
-			<h1>The position Property</h1>
-
-			<h2>This is a heading with an absolute position</h2>
-
-			<p>With absolute positioning, an element can be placed anywhere on a page. The heading below is placed 100px from the left of the page and 150px from the top of the page.</p>
 		</div>
 	</div>
 </body>

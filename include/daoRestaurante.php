@@ -20,11 +20,46 @@ class DAORestaurante {
 
 	}
 
-	public function insertRestaurante(tRestaurante $restaurante) {
+	function updateOrdenPortada($orden, $id)
+	{
+		$sql = $this->db->conexionBD();
+		$query = "UPDATE " . $this->table . " SET orden_portada=? WHERE id_restaurante=".$id;
+		$stmt = $sql->prepare($query);
+		$stmt->bind_param("i", $orden_portada);
+
+		if($stmt->execute())
+			return true;
+		else
+			return false;
+	}
+
+	public function insertarRestaurante(tRestaurante $restaurante) {
+		$nombre = $restaurante->getNombre();
+		$apertura = $restaurante->getApertura();
+		$direccion = $restaurante->getDireccion();
+		$imagen = $restaurante->getImagen();
+		$editor = $restaurante->getEditor();
+		$portada = $restaurante->getPortada();
+		$orden = $restaurante->getOrden();
+		$descr = $restaurante->getDescripcion();
+		
 		$sql = $this->db->conexionBD();
 		$query = "INSERT INTO " . $this->table . " VALUES (NULL,?,?,?,?,?,?,?,?)";
 		$stmt = $sql->prepare($query);
-		$stmt->bind_param("ssssiiis", $restaurante->getNombre(), $restaurante->getApertura(), $restaurante->getDireccion(), $restaurante->getImagen(), $restaurante->getEditor(), $restaurante->getPortada(), $restaurante->getOrden(), $restaurante->getDescripcion() );
+		$stmt->bind_param("ssssiiis", $nombre, $apertura, $direccion, $imagen, $editor, $portada, $orden, $descr );
+
+		if($stmt->execute()){
+			return $stmt->insert_id;
+		}
+		else
+			return false;
+	}
+	
+	public function instertCategoriaRestaurante($idRestaurante, $categoria) {		
+		$sql = $this->db->conexionBD();
+		$query = "INSERT INTO categoria_restaurante VALUES (?, ?)";
+		$stmt = $sql->prepare($query);
+		$stmt->bind_param("ii", $idRestaurante,  $categoria);
 
 		if($stmt->execute())
 			return true;
@@ -34,7 +69,7 @@ class DAORestaurante {
 
 	function getByCategoriaRestaurantes($id_categoria) {
 		$conn = $this->db->conexionBD();
-		$query=sprintf("SELECT * FROM categoria_restaurante cr, restaurantes r WHERE cr.categoria = ".$id_categoria." AND cr.restaurante = r.id_restaurante");
+		$query=sprintf("SELECT * FROM categoria_restaurante cr, restaurantes r WHERE cr.categoria = ".$id_categoria." AND cr.restaurante = r.id_restaurante"); 
 		$rs = $conn->query($query);
 		
 		if ($rs && $rs->num_rows > 0 ) {
@@ -44,25 +79,14 @@ class DAORestaurante {
 			while($i < $num){
 				$fila = $rs->fetch_assoc();
 
-				//echo $rs->num_rows;
-
 				$r = new tRestaurante();
-				/*$r->setNombre($fila['nombre']);
-				echo $r->getNombre() . '<br>';
-				$r->setImagen($fila['imagen']);*/
 
 				$r->setId($fila['id_restaurante']);
-
 				$r->setNombre($fila['nombre']);
-
 				$r->setApertura($fila['apertura']);
-
 				$r->setDireccion($fila['direccion']);
-
 				$r->setImagen($fila['imagen']);
-
 				$r->setEditor($fila['editor']);
-				
 				$r->setPortada($fila['portada']);
 				$r->setOrden($fila['orden_portada']);
 				$r->setDescripcion($fila['descripcion']);
@@ -115,7 +139,7 @@ class DAORestaurante {
 		$descripcion = $restaurante->getDescripcion();
 		
 		$sql = $this->db->conexionBD();
-		$query = "UPDATE " . $this->table . " SET nombre=?, apertura=?, direccion=?, imagen=?, editor=?, portada=?, orden_portada=?, descripcion=? WHERE id_restaurante=?";
+		$query = "UPDATE " . $this->table . " SET nombre=? ,apertura=?, direccion=?, imagen=?, editor=?, portada=?, orden_portada=?, descripcion=? WHERE id_restaurante=".$id;
 		$stmt = $sql->prepare($query);
 		$stmt->bind_param("ssssiiis", $nombre, $apertura, $direccion, $imagen, $editor, $portada, $orden_portada, $descripcion);
 
@@ -137,7 +161,7 @@ class DAORestaurante {
 
 	function getByIdRestaurante($id_restaurante) {
 		$conn = $this->db->conexionBD();
-		$query=sprintf("SELECT * FROM restaurantes WHERE id_restaurante = ".$id);
+		$query=sprintf("SELECT * FROM restaurantes WHERE id_restaurante = ".$id_restaurante);
 		$rs = $conn->query($query);
 		
 		if ($rs && $rs->num_rows > 0 ) {
@@ -165,11 +189,9 @@ class DAORestaurante {
 
 		$conn = $this->db->conexionBD();
 
-		$query=sprintf("SELECT * FROM restaurantes ");
+		$query=sprintf("SELECT * FROM restaurantes WHERE portada = 1");
 
 		$rs = $conn->query($query);
-
-
 
 		if ($rs && $rs->num_rows > 0 ) {
 			$i = '0';
@@ -177,39 +199,22 @@ class DAORestaurante {
 			$num = $rs->num_rows;
 			while($i < $num){
 				$fila = $rs->fetch_assoc();
-
-				//echo $rs->num_rows;
-
+				
 				$r = new tRestaurante();
-				/*$r->setNombre($fila['nombre']);
-				echo $r->getNombre() . '<br>';
-				$r->setImagen($fila['imagen']);*/
 
 				$r->setId($fila['id_restaurante']);
-
 				$r->setNombre($fila['nombre']);
-
-				$r->setCategoria($fila['categoria']);
-
 				$r->setApertura($fila['apertura']);
-
 				$r->setDireccion($fila['direccion']);
-
 				$r->setImagen($fila['imagen']);
-
 				$r->setEditor($fila['editor']);
 
 				array_push($arr,$r);
 
-				
-
-				
 				$i++;
 			}
 			return $arr;
-
 		}
-
 		return false;
 	}
 }
