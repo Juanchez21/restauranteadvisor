@@ -38,15 +38,17 @@ class DAORestaurante {
 		$apertura = $restaurante->getApertura();
 		$direccion = $restaurante->getDireccion();
 		$imagen = $restaurante->getImagen();
+		$tipo = $restaurante->getTipo();
+		$precio = $restaurante->getPrecio();
 		$editor = $restaurante->getEditor();
 		$portada = $restaurante->getPortada();
 		$orden = $restaurante->getOrden();
 		$descr = $restaurante->getDescripcion();
 		
 		$sql = $this->db->conexionBD();
-		$query = "INSERT INTO " . $this->table . " VALUES (NULL,?,?,?,?,?,?,?,?)";
+		$query = "INSERT INTO " . $this->table . " VALUES (NULL,?,?,?,?,?,?,?,?,?,?)";
 		$stmt = $sql->prepare($query);
-		$stmt->bind_param("ssssiiis", $nombre, $apertura, $direccion, $imagen, $editor, $portada, $orden, $descr );
+		$stmt->bind_param("sssssiiiis", $nombre, $apertura, $direccion, $imagen, $tipo, $precio, $editor, $portada, $orden, $descr );
 
 		if($stmt->execute()){
 			return $stmt->insert_id;
@@ -86,6 +88,8 @@ class DAORestaurante {
 				$r->setApertura($fila['apertura']);
 				$r->setDireccion($fila['direccion']);
 				$r->setImagen($fila['imagen']);
+				$r->setTipo($fila['tipo']);
+				$r->setPrecio($fila['precio']);
 				$r->setEditor($fila['editor']);
 				$r->setPortada($fila['portada']);
 				$r->setOrden($fila['orden_portada']);
@@ -98,6 +102,54 @@ class DAORestaurante {
 			return $arr;
 		}
 
+		return false;
+	}
+	
+	function getNombreCategoriaById($id) {
+		$conn = $this->db->conexionBD();
+		$query=sprintf("SELECT nombre FROM categorias WHERE id_categoria = ".$id); 
+		$rs = $conn->query($query);
+		
+		if ($rs && $rs->num_rows > 0 ) {
+			$fila = $rs->fetch_assoc();
+			
+			$u = $fila['nombre'];
+			
+			$rs->free();
+			return $u;
+		}
+		return false;
+	}
+
+	function getCategoriaByIdRestaurante($id_restaurante) {
+		$conn = $this->db->conexionBD();
+		$query=sprintf("SELECT categoria FROM categoria_restaurante WHERE restaurante = ".$id_restaurante); 
+		$rs = $conn->query($query);
+		
+		if ($rs && $rs->num_rows > 0 ) {
+			$fila = $rs->fetch_assoc();
+			
+			$u = $fila['categoria'];
+			
+			$rs->free();
+			return $u;
+		}
+		return false;
+	}
+	
+	function getNombreEditorRestaurante($id_restaurante) {
+		$conn = $this->db->conexionBD();
+		$query=sprintf("SELECT u.nombre FROM usuarios u, restaurantes r WHERE r.id_restaurante = ".$id_restaurante." AND r.editor = u.id_usuario"); 
+		$rs = $conn->query($query);
+		
+		if ($rs && $rs->num_rows > 0 ) {
+			$fila = $rs->fetch_assoc();
+			
+			$u = $fila['nombre'];
+			
+			$rs->free();
+			return $u;
+		}
 		return false;
 	}
 
@@ -115,6 +167,8 @@ class DAORestaurante {
 				$u->setApertura($fila['apertura']);
 				$u->setDireccion($fila['direccion']);
 				$u->setImagen($fila['imagen']);
+				$u->setTipo($fila['tipo']);
+				$u->setPrecio($fila['precio']);
 				$u->setEditor($fila['editor']);
 				$u->setPortada($fila['portada']);
 				$u->setOrden($fila['orden_portada']);
@@ -133,15 +187,17 @@ class DAORestaurante {
 		$apertura = $restaurante->getApertura();
 		$direccion = $restaurante->getDireccion();
 		$imagen = $restaurante->getImagen();
+		$tipo = $restaurante->getTipo();
+		$precio = $restaurante->getPrecio();
 		$editor = $restaurante->getEditor();
 		$portada = $restaurante->getPortada();
 		$orden_portada = $restaurante->getOrden();
 		$descripcion = $restaurante->getDescripcion();
 		
 		$sql = $this->db->conexionBD();
-		$query = "UPDATE " . $this->table . " SET nombre=? ,apertura=?, direccion=?, imagen=?, editor=?, portada=?, orden_portada=?, descripcion=? WHERE id_restaurante=".$id;
+		$query = "UPDATE " . $this->table . " SET nombre=? ,apertura=?, direccion=?, imagen=?, tipo=?, precio=?, editor=?, portada=?, orden_portada=?, descripcion=? WHERE id_restaurante=".$id;
 		$stmt = $sql->prepare($query);
-		$stmt->bind_param("ssssiiis", $nombre, $apertura, $direccion, $imagen, $editor, $portada, $orden_portada, $descripcion);
+		$stmt->bind_param("sssssiiiis", $nombre, $apertura, $direccion, $imagen, $tipo, $precio, $editor, $portada, $orden_portada, $descripcion);
 
 		if($stmt->execute())
 			return true;
@@ -173,6 +229,8 @@ class DAORestaurante {
 			$u->setApertura($fila['apertura']);
 			$u->setDireccion($fila['direccion']);
 			$u->setImagen($fila['imagen']);
+			$u->setTipo($fila['tipo']);
+			$u->setPrecio($fila['precio']);
 			$u->setEditor($fila['editor']);
 			$u->setPortada($fila['portada']);
 			$u->setOrden($fila['orden_portada']);
@@ -207,6 +265,8 @@ class DAORestaurante {
 				$r->setApertura($fila['apertura']);
 				$r->setDireccion($fila['direccion']);
 				$r->setImagen($fila['imagen']);
+				$r->setTipo($fila['tipo']);
+				$r->setPrecio($fila['precio']);
 				$r->setEditor($fila['editor']);
 
 				array_push($arr,$r);
@@ -217,5 +277,28 @@ class DAORestaurante {
 		}
 		return false;
 	}
-}
+
+	function getComentariosByIdRestaurantes($id_restaurante){
+		$conn = $this->db->conexionBD();
+
+		$query=sprintf("SELECT contenido FROM comentarios WHERE id_restaurante =".$id_restaurante);
+
+		$rs = $conn->query($query);
+		
+		if ($rs && $rs->num_rows > 0 ) {
+			$i = '0';
+			$arr = array();
+			$num = $rs->num_rows;
+			while($i < $num){
+				$fila = $rs->fetch_assoc();
+				$r = $fila['contenido'];
+				array_push($arr,$r);
+
+				$i++;
+			}
+			return $arr;
+		}
+		return false;
+	}
+}	
 ?>

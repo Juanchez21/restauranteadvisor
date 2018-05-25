@@ -89,6 +89,29 @@ class Usuario{
 		return $errores;	
 	}
 	
+	public function editaUsuario($usuario){
+		$errores = array();
+
+		if(empty($usuario->getLogin()) || empty($usuario->getContrasena()) || empty($usuario->getNombre()) )
+			$errores[0] = "No se han introducido todos los datos necesarios";
+
+		if($this->daoUsuario->getUserByLogin($usuario->getLogin()))
+			$errores[1] = "El nombre de usuario ya se encuentra en uso";
+
+		if(strlen($usuario->getContrasena()) < 6)
+			$errores[2] = "La contraseña debe contener al menos 6 caracteres";
+		
+		if(empty($errores)) {
+			$usuario->setContrasena(password_hash($usuario->getContrasena(), PASSWORD_DEFAULT)); // encriptamos la contraseña del usuario
+			
+			if( !$this->daoUsuario->update($usuario) )
+				$errores[4] = "Se ha producido un error al dar de alta al usuario";
+		}
+		
+		//$result = array	('errors' => $errores,'data' => null);
+		return $errores;	
+	}
+	
 	public function cerrarSesion(){
 		if(isset($_SESSION['sesion']))
 			$_SESSION['login'] = false;

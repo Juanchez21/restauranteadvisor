@@ -14,6 +14,10 @@ class tRestaurante {
 
 	private $imagen = "";
 
+	private $tipo = "";
+
+	private $precio = "";
+
 	private $editor = "";
 	
 	private $portada = "";
@@ -34,6 +38,10 @@ class tRestaurante {
 
 	public function setImagen( $imagen ){ $this->imagen = $imagen; }
 
+	public function setTipo( $tipo ){ $this->tipo = $tipo; }
+
+	public function setPrecio( $precio ){ $this->precio = $precio; }
+
 	public function setEditor( $editor ){ $this->editor = $editor; }	
 	
 	public function setPortada( $portada ){ $this->portada = $portada; }
@@ -52,7 +60,11 @@ class tRestaurante {
 
 	public function getDireccion(){ return $this->direccion; }	
 
-	public function getImagen(){ return $this->imagen; }	
+	public function getImagen(){ return $this->imagen; }
+
+	public function getTipo(){ return $this->tipo; }
+
+	public function getPrecio(){ return $this->precio; }	
 
 	public function getEditor(){ return $this->editor; }	
 	

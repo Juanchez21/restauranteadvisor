@@ -30,7 +30,7 @@ if (esAdmin() && isset($_GET['id']) && !isset($_POST['submit'])) {
 	$usuario->setNombre($_POST["nombre"]);
 	$usuario->setContrasena(password_hash($_POST["password"], PASSWORD_DEFAULT));
 	$usuario->setPerfil($_POST["perfil"]);
-	$error = $claseUsuario->actualizarUsuario($usuario);
+	$error = $claseUsuario->editaUsuario($usuario);
 	
 	header("Location: /usuarios.php");
 	exit;

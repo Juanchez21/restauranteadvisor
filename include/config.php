@@ -6,10 +6,10 @@ date_default_timezone_set('Europe/Madrid');
 
 require_once __DIR__.'/classBD.php';
 
-define('BD_HOST', 'sql204.mipropia.com');
+define('BD_HOST', 'localhost');
 define('BD_NAME', 'mipc_21978662_restauranteadvisor');
-define('BD_USER', 'mipc_21978662');
-define('BD_PASS', 'RestAdvisor.c0m');
+define('BD_USER', 'root');
+define('BD_PASS', '');
 // Inicializa la base de datos
 $bd = classBD::getSingleton();
 $bd->init(array('host'=>BD_HOST, 'bd'=>BD_NAME, 'user'=>BD_USER, 'pass'=>BD_PASS));
