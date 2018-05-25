@@ -117,10 +117,10 @@ else{
 					
 					<label class="text-left">Categorias: </label>
 					<div class="text-right"> 
-						<input type="checkbox" name="categoria1" value="1" <?php echo $categoria1; ?> > Cenas
-						<input type="checkbox" name="categoria2" value="2" <?php echo $categoria2; ?> > Comidas
-						<input type="checkbox" name="categoria3" value="3" <?php echo $categoria3; ?> > Desayunos
-						<input type="checkbox" name="categoria4" value="4" <?php echo $categoria4; ?> > Meriendas
+						<label><input type="checkbox" name="categoria1" value="1" <?php echo $categoria1; ?> > Cenas </label>
+						<label><input type="checkbox" name="categoria2" value="2" <?php echo $categoria2; ?> > Comidas </label>
+						<label><input type="checkbox" name="categoria3" value="3" <?php echo $categoria3; ?> > Desayunos </label>
+						<label><input type="checkbox" name="categoria4" value="4" <?php echo $categoria4; ?> > Meriendas </label>
 					</div>
 					
 					<div class="separator-line"></div>

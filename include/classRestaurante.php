@@ -9,6 +9,20 @@ class Restaurante{
 	public function __construct(){
 		$this->daoRestaurante = new DAORestaurante();
 	}
+	
+	private function nombresCategorias($id_r){
+		$categoriasString = "";
+		$arrayCategorias = $this->categoriasRestaurante($id_r);
+		if($arrayCategorias){
+			foreach($arrayCategorias as $categoria){
+				$nombre = $this->daoRestaurante->getNombreCategoriaById($categoria);
+				if ($nombre)
+					$categoriasString=$categoriasString.$nombre." ";
+			}
+		}
+		return $categoriasString;
+	}
+	
 	//restaurantes destacados
 	public function getAllRestaurantesDestacados(){
 		//return $this->daoRestaurante->getRestauranteDestacados();
@@ -19,17 +33,13 @@ class Restaurante{
 			$nombre = $array[$i]->getNombre();
 			$imagen = $array[$i]->getImagen();
 			$id = $array[$i]->getId();
-			$id_categoria = $this->daoRestaurante->getCategoriaByIdRestaurante($id);
-			$categoria = $this->daoRestaurante->getNombreCategoriaById($id_categoria);
-
+			$nombresCategorias = $this->nombresCategorias($id);
 			
 			if($i+1 < $num_total) {
 				$nombre1 = $array[$i+1]->getNombre();
 				$imagen1 = $array[$i+1]->getImagen();
 				$id1 = $array[$i+1]->getId();
-				$id_categoria = $this->daoRestaurante->getCategoriaByIdRestaurante($id);
-				$categoria = $this->daoRestaurante->getNombreCategoriaById($id_categoria);
-
+				$nombresCategorias1 = $this->nombresCategorias($id1);
 			}
 
 			//echo '<table id="t1">';
@@ -44,7 +54,7 @@ class Restaurante{
 			echo'		<a href = "restaurante.php?id='. $id .'"><img class = "imagen" src = "'. $imagen.'" ></a>';
 			echo'		<div class = "info-restaurante">';
 			echo'		<a href = "restaurante.php?id='. $id .'"><div class ="nombre-restaurante">Nombre:'. $nombre.'</div></a>';
-			echo '<div class = "categoria-restaurante">Categoria: '. $categoria. '</div>';
+			echo '<div class = "categoria-restaurante">Categoria: '. $nombresCategorias. '</div>';
 			echo'		</div>';
 			echo'	</td>';
 			if($i+1 < $num_total){
@@ -52,7 +62,7 @@ class Restaurante{
 				echo'		<a href = "restaurante.php?id='. $id1 .'"><img class = "imagen" src = "'.$imagen1.'" ></a>';
 				echo'		<div class = "info-restaurante">';
 				echo'		<a href = "restaurante.php?id='. $id1 .'"><div class ="nombre-restaurante">Nombre:'. $nombre1.'</div></a>';
-				echo '<div class = "categoria-restaurante">Categoria: '. $categoria. '</div>';
+				echo '<div class = "categoria-restaurante">Categoria: '. $nombresCategorias1. '</div>';
 				echo'		</div>';
 				echo'	</td>';
 			}
@@ -208,7 +218,8 @@ class Restaurante{
 		$id_restaurante = $restaurante->getId();
 		$nombre = $restaurante->getNombre();
 		$id_categoria = $this->daoRestaurante->getCategoriaByIdRestaurante($id_restaurante);
-		$categoria = $this->daoRestaurante->getNombreCategoriaById($id_categoria);
+		$categoria = $this->nombresCategorias($id_restaurante);
+		//$categoria = $this->daoRestaurante->getNombreCategoriaById($id_categoria);
 		$imagen = $restaurante->getImagen();
 		$tipo = $restaurante->getTipo();
 		$precio = $restaurante->getPrecio();
