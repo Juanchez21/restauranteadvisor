@@ -9,13 +9,28 @@ RESTAURANTE, APAREZCA UN BOTON DE EDITAR RESTAURANTE Y TAL*/
 /*aunque creo que se refiere a la apertura de hora. osea solo time...xd*/
 /*es mas facil..*/
 
+$categoria1 ="";
+$categoria2 ="";
+$categoria3 ="";
+$categoria4 ="";
+
 if (isset($_GET['id']) && !isset($_POST['submit'])) {
 	$id = $_GET['id'];
-	echo 'VAMOS A EDITAR EL RESTURANTE CON IDENTIFICADOR: ' .$id . " ";
+	//echo 'VAMOS A EDITAR EL RESTURANTE CON IDENTIFICADOR: ' .$id . " ";
 	$classRest = new Restaurante();
 	$restauranteModificar = $classRest->obtenerUnRestaurante($id);
 	if (!$restauranteModificar){
 		echo "Algo ha salido mal 1...";
+	}
+	
+	$arrayCategorias = $classRest->categoriasRestaurante($id);
+	if ($arrayCategorias) {
+		foreach($arrayCategorias as $categoria) {
+			if($categoria==1) $categoria1 ="checked";
+			if($categoria==2) $categoria2 ="checked";
+			if($categoria==3) $categoria3 ="checked";
+			if($categoria==4) $categoria4 ="checked";
+		}
 	}
 }	
 	/*$radios="";
@@ -29,8 +44,14 @@ if (isset($_GET['id']) && !isset($_POST['submit'])) {
 	}*/
 else{ 
 	if (isset($_POST['submit'])) {
+	
+	if (isset( $_POST['categoria1'] )) $categoria1 = $_POST['categoria1'];
+	if (isset( $_POST['categoria2'] )) $categoria1 = $_POST['categoria2'];
+	if (isset( $_POST['categoria3'] )) $categoria1 = $_POST['categoria3'];
+	if (isset( $_POST['categoria4'] )) $categoria1 = $_POST['categoria4'];
+		
 	$id_rest = $_POST["id"];
-	echo $id_rest;
+	//echo $id_rest;
 	$restaurante = new tRestaurante();
 	$claseRestaurante = new Restaurante();
 
@@ -65,8 +86,10 @@ else{
 
 	$error = $claseRestaurante->actualizarRestaurante($restaurante);
 	
+	$claseRestaurante->actualizarCategorias($restaurante->getId(), $categoria1, $categoria2, $categoria3, $categoria4);
+	
 	header("Location: /restaurante.php?id=$id_rest");
-	/*exit;*/
+	exit;
 }else{
 	echo "Algo ha salido mal 2...";
 	}
@@ -83,27 +106,55 @@ else{
 	<div class="cuerpo">
 		<?php require ('include/comun/menu_usuario.php');?>
 		<div class="portada">
-			<div class="editar-form">
+			<div class="login-form">
 				<form method="post" action="editarRestaurante.php" enctype="multipart/form-data">
 				<fieldset>
-				<legend>Editar usuario</legend>
+				<legend>Editar Restaurante</legend>
 					<label class="text-left">Nombre: </label>
 					<input type="text" value="<?php echo $restauranteModificar->getNombre(); ?>" name="nombre" class="text-right" required>
-					<!--decirle que no debe usar <br> , que lo quite del registro y demas-->
-					<label class="text-left">Apertura: </label>
-					<!--<input id="datetime" type="datetime-local">-->
+					
+					<div class="separator-line"></div>
+					
+					<label class="text-left">Categorias: </label>
+					<div class="text-right"> 
+						<input type="checkbox" name="categoria1" value="1" <?php echo $categoria1; ?> > Cenas
+						<input type="checkbox" name="categoria2" value="2" <?php echo $categoria2; ?> > Comidas
+						<input type="checkbox" name="categoria3" value="3" <?php echo $categoria3; ?> > Desayunos
+						<input type="checkbox" name="categoria4" value="4" <?php echo $categoria4; ?> > Meriendas
+					</div>
+					
+					<div class="separator-line"></div>
+					
+					<label class="text-left">Hora de apertura: </label>
 					<input type="time" value="<?php echo $restauranteModificar->getApertura(); ?>" name="apertura" class="text-right" required>
 					
+					<div class="separator-line"></div>
+					
 					<label class="text-left">Direccion: </label>
-					<input type="text" value="<?php echo $restauranteModificar->getDireccion(); ?>" placeholder="Contraseña" name="direccion" class="text-right" required>
+					<input type="text" value="<?php echo $restauranteModificar->getDireccion(); ?>" name="direccion" class="text-right" required>
+					
+					<div class="separator-line"></div>
 					
 					<label for="exampleInputFile" class="text-left">Imagen: </label>
-					<div>
-					<input type="file" name="foto">
-					</div>
+					<div><input type="file" name="foto"></div>
+					
+					<div class="separator-line"></div>
+					
+					<label class="text-left">Tipo: </label>
+					<input type="text" value="<?php echo $restauranteModificar->getTipo(); ?>" name="tipo" class="text-right" required>
+					
+					<div class="separator-line"></div>
+					
+					<label class="text-left">Precio: </label>
+					<input type="number" value="<?php echo $restauranteModificar->getPrecio(); ?>" name="precio" class="text-right" required>
+					
+					<div class="separator-line"></div>
+					
 					<label class="text-left">Descripcion: </label>
-					<textarea placeholder="Descripcion" name="descripcion" class="text-right" required><?php echo $restauranteModificar->getDescripcion(); ?>" 
+					<textarea name="descripcion" class="text-right" rows="7" cols="40" required><?php echo $restauranteModificar->getDescripcion(); ?>" 
 					</textarea>
+					
+					<div class="separator-line"></div>
 					
 					<input type="hidden" value="<?php echo $restauranteModificar->getId(); ?>" name="id" required>
 					<button class="max-width" type="submit" name="submit">Editar</button>

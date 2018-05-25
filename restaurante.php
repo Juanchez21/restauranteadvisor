@@ -4,7 +4,13 @@
 require_once("include/config.php");
 require_once("include/classRestaurante.php");
 $restauranteClass = new Restaurante();
-$id_restaurante = $_GET['id'];
+if (isset($_GET['id'])) {
+	$id_restaurante = $_GET['id'];
+}
+else {
+	header('Location: /index.php');
+	exit;
+}
 /*$restaurante = $restauranteClass->obtenerUnRestaurante($id_restaurante);
 $botonEditar = '<form method = "post" action = "editarRestaurante.php?id='.$id_restaurante.'">
 						<input type="submit" value="Editar Restaurante"></form>';*/
@@ -23,16 +29,8 @@ $botonEditar = '<form method = "post" action = "editarRestaurante.php?id='.$id_r
 		<?php require ('include/comun/menu_usuario.php');?>
 		<div class="portada">
 			<?php
-			$restauranteClass->mostrarRestaurante($restauranteClass, $id_restaurante);
-			
-					?>
-					
-				
-
-			<?php 
-				//$i++;}
+				$restauranteClass->mostrarRestaurante($restauranteClass, $id_restaurante);
 			?>
-			
 		</div>
 	</div>
 </body>

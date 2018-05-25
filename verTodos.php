@@ -16,8 +16,12 @@ $restaurantes = new Restaurante();
 	<div class="cuerpo">
 		<?php require ('include/comun/menu_usuario.php');?>
 		<div class="portada">
-			<h1>Restaurantes:</h1>
-			<?php $restaurantes->obtenerTodosRestaurantes(); ?>
+			<h1> Todos los Restaurantes:</h1>
+			<table id="t1">
+				<tbody>
+					<?php $restaurantes->obtenerTodosRestaurantes(); ?>
+				</tbody>
+			</table>
 		</div>
 	</div>
 </body>

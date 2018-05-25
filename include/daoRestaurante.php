@@ -127,13 +127,29 @@ class DAORestaurante {
 		$rs = $conn->query($query);
 		
 		if ($rs && $rs->num_rows > 0 ) {
-			$fila = $rs->fetch_assoc();
-			
-			$u = $fila['categoria'];
-			
-			$rs->free();
-			return $u;
+			$i = '0';
+			$arr = array();
+			$num = $rs->num_rows;
+			while($i < $num){
+				$fila = $rs->fetch_assoc();
+				
+				$u = $fila['categoria'];
+
+				array_push($arr,$u);
+				
+				$i++;
+			}
+			return $arr;
 		}
+		return false;
+	}
+	
+	function deleteCategoriasRestaurante($id){
+		$conn = $this->db->conexionBD();
+		$query=sprintf("DELETE FROM categoria_restaurante WHERE restaurante = ".$id);
+		$rs = $conn->query($query);
+		if($rs)
+			return true;
 		return false;
 	}
 	
