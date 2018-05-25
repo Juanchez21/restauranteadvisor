@@ -145,6 +145,8 @@ class Restaurante{
 			$id = $array[$i]->getId();
 			$direccion = $array[$i]->getDireccion();
 
+			// la foto y el nombre son links independientes
+			
 			//echo '<table id="t2">';
 			echo'<tr>';
 			echo'	<th>Restaurante</th>';
@@ -166,6 +168,28 @@ class Restaurante{
 			echo'	</tr>';
 			//echo'</table>';
 			$i++;
+			
+			// la fila entera es un link
+			/* 
+			echo'<tr><a href = "restaurante.php?id='. $id .'">';
+			echo'	<th>Restaurante</th>';
+			echo'	<th>Informacion</th>';
+
+			echo'</tr>';
+			echo'<tr>';
+			echo'	<td>';
+			echo'		<img class = "imagen" src = "'. $imagen.'" >';
+			echo'	</td>';
+			
+			echo'	<td>';
+			echo'		<div class = "info-restaurante-t2">';
+			echo'		<p class ="nombre-restaurante">Nombre:'. $nombre.'			</p>';
+			echo '<div class = "direccion-restaurante">Direccion: '. $direccion. '</div>';
+			echo'		</div>';
+			echo'	</td>';
+			
+			echo'	</a></tr>';
+			*/
 		}
 	}
 
