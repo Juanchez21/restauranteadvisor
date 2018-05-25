@@ -131,32 +131,24 @@ a.plain-link { text-decoration: none;}
     background-color: #FFD2D2;
 }
 /*mio*/
-div.contenido{
-	padding:10px;
-	margin-left: 5%;
-	margin-bottom: 5%;
-	height: 100%;
-	width: 80%;
-	border: 5px solid blue;
-}
 
 div.contenido-restaurante{
 	padding: 5px;
 	height: 100%;
-	width: 90%;
+	width: 50%;
 	border: 5px solid yellow;
 }
 
 .imagen{
-	height: 300px;
-	width: 400px;
+	height: 200px;
+	width: 300px;
 	/*border: 3px solid skyblue;*/
 }
 
 div.info-restaurante {
 	/*font-family: "Times New Roman", Times, serif;*/ 
 	/*ya no es necesario*/
-	font-size: 30px;
+	font-size: 20px;
 	width: 30%;
 	float: right;
 	clear: right;
@@ -182,4 +174,71 @@ div.comentarios{
 .logo{
 	width:125px; 
 	height:60px;
+}
+
+table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+
+table#t1 {
+	margin-left: 5%;
+    width: 90%;    
+    background-color: #f1f1c1;
+}
+table#t1 td{
+	padding: 5px;
+	width: 50%;
+}
+
+.imagen-t2{
+	height: 250px;
+	width: 400px;
+}
+
+div.info-restaurante-t2{
+	/*font-family: "Times New Roman", Times, serif;*/ 
+	/*ya no es necesario*/
+	padding:0px;
+	font-size: 20px;
+	height: 250px;
+	width: 400px;
+	border: 5px solid green;
+}
+
+.nombre-restaurante{
+	font-weight: bold;
+}
+
+
+table#t2 {
+	margin-left: 10%;
+    width: 70%;    
+    background-color: #f1f1c1;
+}
+table#t2 td{
+	padding: 5px;
+	width: 50%;
+}
+
+div.contenido{
+	padding:10px;
+	margin-left: 5%;
+	margin-bottom: 5%;
+	height: 100%;
+	width: 90%;
+	border: 5px solid blue;
+}
+
+div.detalle-restaurante{
+	height: 80%;
+	width: 40%;
+	padding: 5px;
+	float: right;
+	clear: right;
+	font-size: 20px;
+}
+.imagen-restaurante{
+	height: 300px;
+	width: 500px;
 }
