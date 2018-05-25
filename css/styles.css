@@ -80,6 +80,13 @@ fieldset.formulario-contacto {
     padding-right: 0.75em;
 }
 
+div.separator-line {
+    margin-top: 10px;
+    --border: 0.5px dotted;
+    margin-bottom: 10px;
+	clear: both;
+}
+
 /* ESTILOS DEL INDEX */
 div.portada {
 	margin-right: 5px;
