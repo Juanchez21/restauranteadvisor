@@ -21,7 +21,7 @@
 			<li> <a class="plain-link" href="/usuarios.php"> Gestión de usuarios </a>
 			</li>
 			<br>
-			<li> <a class="plain-link" href="/portada.php"> Gestión de la portada </a>
+			<li> <a class="plain-link" href="/gestionPortada.php"> Gestión de la portada </a>
 			</li>
 			<?php
 		}

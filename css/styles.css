@@ -137,6 +137,10 @@ a.plain-link { text-decoration: none;}
 	color: #D8000C;
     background-color: #FFD2D2;
 }
+.gg-msg {
+    vertical-align:middle;
+    background-color: #99ff99;
+}
 /*mio*/
 
 div.contenido-restaurante{

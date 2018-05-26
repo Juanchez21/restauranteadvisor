@@ -84,6 +84,14 @@ class Restaurante{
 		return $this->daoRestaurante->updateOrdenPortada($orden, $id);
 	}
 	
+	public function actualizarPortada($id, $portada, $orden){
+		return $this->daoRestaurante->actualizarPortada($id, $portada, $orden);
+	}
+	
+	public function obtenerTodos() {
+		return $this->daoRestaurante->getAllRestaurantes();
+	}
+	
 	public function obtenerTodosRestaurantes()
 	{
 		//return $this->daoRestaurante->getAllRestaurantes();
@@ -266,7 +274,10 @@ class Restaurante{
 		echo'<p class = "">Descripcion:'.$descripcion.'</p>';
 		echo'</div>';
 
-		if(esEditor() && ($_SESSION['userID'] == $id_editor)){
+		// si existe $_SESSION['userId'] y es igual al editor del restaurante
+		// no queda otra que el usuario logueado sea editor
+		if($_SESSION['userID'] == $id_editor){
+		//if(esEditor() && ($_SESSION['userID'] == $id_editor)){
 			echo $botonEditar;
 		}
 

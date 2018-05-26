@@ -19,6 +19,18 @@ class DAORestaurante {
 		$this->db = classBD::getSingleton();
 
 	}
+	
+	function actualizarPortada($id, $portada, $orden){
+		$sql = $this->db->conexionBD();
+		$query = "UPDATE " . $this->table . " SET portada=?, orden_portada=? WHERE id_restaurante=?";
+		$stmt = $sql->prepare($query);
+		$stmt->bind_param("iii", $portada, $orden, $id);
+
+		if($stmt->execute())
+			return true;
+		else
+			return false;
+	}
 
 	function updateOrdenPortada($orden, $id)
 	{
