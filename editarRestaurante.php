@@ -100,6 +100,8 @@ else{
 <head> <title>Index</title>
 	<meta charset = "UTF-8">
 	<link rel="stylesheet" type="text/css" href="/css/styles.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script src="js/scripts.js"></script>
 </head>
 <body>
 	<?php require ('include/comun/cabecera.php');?>
@@ -135,7 +137,7 @@ else{
 					
 					<div class="separator-line"></div>
 					
-					<label for="exampleInputFile" class="text-left">Imagen: </label>
+					<label class="text-left">Imagen: </label>
 					<div><input type="file" name="foto"></div>
 					
 					<div class="separator-line"></div>
@@ -156,7 +158,7 @@ else{
 					
 					<div class="separator-line"></div>
 					
-					<input type="hidden" value="<?php echo $restauranteModificar->getId(); ?>" name="id" required>
+					<input type="hidden" value="<?php echo $restauranteModificar->getId(); ?>" name="id">
 					<button class="max-width" type="submit" name="submit">Editar</button>
 				</fieldset>
 				</form>

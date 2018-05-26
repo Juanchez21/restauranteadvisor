@@ -14,3 +14,15 @@ function actualiza(data, status){
 		
 	location.reload();
 }
+
+function goLogin(){
+	location.replace("/login.php");
+}
+
+function goRegister(){
+	location.replace("/registro.php");
+}
+
+function goAddUser() {
+	location.replace("/registro.php?add=1");
+}

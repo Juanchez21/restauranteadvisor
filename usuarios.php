@@ -12,6 +12,8 @@ if(esAdmin()) { // estamos logueados como administrador
 <head> <title>Index</title>
 	<meta charset = "UTF-8">
 	<link rel="stylesheet" type="text/css" href="css/styles.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script src="js/scripts.js"></script>
 </head>
 <body>
 	<?php require ('include/comun/cabecera.php');?>
@@ -44,7 +46,7 @@ if(esAdmin()) { // estamos logueados como administrador
 					}
 				?>
 			</table>
-			<a href="/registro.php?add=1"><button> Añadir nuevo usuario </button></a>
+			<button onclick=goAddUser();> Añadir nuevo usuario </button>
 		</div>
 	</div>
 </body>

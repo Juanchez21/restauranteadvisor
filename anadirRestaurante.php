@@ -24,7 +24,7 @@ if(isset($_POST['submit']) ){
 	//else
 		//$restaurante->setImagen("noimage.jpg");
 	$restaurante->setTipo($_POST["tipo"]);
-	$restaurante->setPrecio$_POST["precio"]);
+	$restaurante->setPrecio($_POST["precio"]);
 	$restaurante->setEditor($_SESSION['userID']);
 	$restaurante->setPortada($_POST["portada"]);
 	$restaurante->setDescripcion($_POST["descripcion"]);
@@ -44,6 +44,8 @@ if(isset($_POST['submit']) ){
 <head> <title>Index</title>
 	<meta charset = "UTF-8">
 	<link rel="stylesheet" type="text/css" href="css/styles.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script src="js/scripts.js"></script>
 </head>
 <body>
 	<?php require ('include/comun/cabecera.php');?>
@@ -77,7 +79,7 @@ if(isset($_POST['submit']) ){
 					<div class="separator-line"></div>
 					
 					<label class="text-left">Hora de apertura: </label>
-					<input type="time" placeholder="Apertura" name="apertura" class="text-right" required>
+					<input type="time" name="apertura" class="text-right" required>
 					
 					<div class="separator-line"></div>
 					

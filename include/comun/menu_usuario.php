@@ -7,10 +7,10 @@
 			?>
 			<li> <a class="plain-link" href="/verTodos.php"> Ver todos los restaurantes </a>
 			</li>
-			<br>
+			
 			<!--<li> <a class="plain-link" href="/editarRestaurante.php"> Editar restaurante </a>
 			</li>-->
-			<br>
+			
 			<li> <a class="plain-link" href="/anadirRestaurante.php"> Añadir restaurante </a>
 			</li>
 			<?php
@@ -20,7 +20,7 @@
 			?>
 			<li> <a class="plain-link" href="/usuarios.php"> Gestión de usuarios </a>
 			</li>
-			<br>
+			
 			<li> <a class="plain-link" href="/gestionPortada.php"> Gestión de la portada </a>
 			</li>
 			<?php
@@ -30,9 +30,9 @@
 	else {
 		?>
 		<p> ¡Vaya! Parece que aún no te has logueado... </p>
-		<a class="plain-link" href="login.php"><button class="max-width">Login</button></a>
+		<button class="max-width" onclick=goLogin()>Login</button>
 		<p> O aprovecha para registrarte </p>
-		<a class="plain-link" href="registro.php"><button class="max-width">Registro</button></a>
+		<button class="max-width" onclick=goRegister()>Registro</button>
 		<?php
 	}
 	?>

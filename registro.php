@@ -34,6 +34,8 @@ if(isset($_POST['submit']) && isset($_POST['login']) && isset($_POST['nombre'])&
 <head> <title>Index</title>
 	<meta charset = "UTF-8">
 	<link rel="stylesheet" type="text/css" href="css/styles.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script src="js/scripts.js"></script>
 </head>
 <body>
 	<?php require ('include/comun/cabecera.php');?>
@@ -53,16 +55,16 @@ if(isset($_POST['submit']) && isset($_POST['login']) && isset($_POST['nombre'])&
 				<legend>Registro</legend>
 					<label class="text-left">Usuario: </label>
 					<input type="text" placeholder="Usuario" name="login" class="text-right" required>
-					<br><br>
+					<div class="separator-line"></div>
 					<label class="text-left">Nombre: </label>
 					<input type="text" placeholder="Nombre" name="nombre" class="text-right" required>
-					<br><br>
+					<div class="separator-line"></div>
 					<label class="text-left">Contraseña: </label>
 					<input type="password" placeholder="Contraseña" name="password" class="text-right" required>
-					<br><br>
+					<div class="separator-line"></div>
 					<label class="text-left">Confirma Contraseña: </label>
 					<input type="password" placeholder="Contraseña" name="password2" class="text-right" required>
-					<br><br>
+					<div class="separator-line"></div>
 					<button class="max-width" type="submit" name="submit">Registro</button>
 				</fieldset>
 				</form>

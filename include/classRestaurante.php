@@ -51,7 +51,7 @@ class Restaurante{
 			echo'</tr>';
 			echo'<tr>';
 			echo'	<td>';
-			echo'		<a href = "restaurante.php?id='. $id .'"><img class = "imagen" src = "'. $imagen.'" ></a>';
+			echo'		<a href = "restaurante.php?id='. $id .'"><img class = "imagen" src = "'. $imagen.'" alt="'.$nombre.'"></a>';
 			echo'		<div class = "info-restaurante">';
 			echo'		<a href = "restaurante.php?id='. $id .'"><div class ="nombre-restaurante">Nombre:'. $nombre.'</div></a>';
 			echo '<div class = "categoria-restaurante">Categoria: '. $nombresCategorias. '</div>';
@@ -59,7 +59,7 @@ class Restaurante{
 			echo'	</td>';
 			if($i+1 < $num_total){
 				echo'	<td>';
-				echo'		<a href = "restaurante.php?id='. $id1 .'"><img class = "imagen" src = "'.$imagen1.'" ></a>';
+				echo'		<a href = "restaurante.php?id='. $id1 .'"><img class = "imagen" src = "'.$imagen1.'" alt="'.$nombre.'"></a>';
 				echo'		<div class = "info-restaurante">';
 				echo'		<a href = "restaurante.php?id='. $id1 .'"><div class ="nombre-restaurante">Nombre:'. $nombre1.'</div></a>';
 				echo '<div class = "categoria-restaurante">Categoria: '. $nombresCategorias1. '</div>';
@@ -115,7 +115,7 @@ class Restaurante{
 			echo'</tr>';
 			echo'<tr>';
 			echo'	<td>';
-			echo'		<a href = "restaurante.php?id='. $id .'"><img class = "imagen" src = "'. $imagen.'" ></a>';
+			echo'		<a href = "restaurante.php?id='. $id .'"><img class = "imagen" src = "'. $imagen.'" alt="'.$nombre.'"></a>';
 			echo'	</td>';
 			
 			echo'	<td>';
@@ -163,7 +163,7 @@ class Restaurante{
 			echo'</tr>';
 			echo'<tr>';
 			echo'	<td>';
-			echo'		<a href = "restaurante.php?id='. $id .'"><img class = "imagen" src = "'. $imagen.'" ></a>';
+			echo'		<a href = "restaurante.php?id='. $id .'"><img class = "imagen" src = "'. $imagen.'" alt="'.$nombre.'"></a>';
 			echo'	</td>';
 			
 			echo'	<td>';
@@ -221,7 +221,7 @@ class Restaurante{
 			echo'<div class = "contenido">';
 			echo'<div class = "contenido-restaurante">';
 			echo'<img class = "imagen" src = "../';
-			echo $imagen.'">';		
+			echo $imagen.'" alt="'.$nombre.'">';		
 			echo'<div class = "info-restaurante">';
 			echo'<div class = "nombre-restaurante">Nombre:"';
 			echo $nombre.'"';
@@ -263,7 +263,7 @@ class Restaurante{
 		echo'<h1> Restaurante: '. $nombre . ' </h1>';
 		echo'<div class = "contenido">';
 		echo'<div class = "restaurante">';
-		echo'<img class = "imagen-restaurante" src = "'.$imagen.'" >';
+		echo'<img class = "imagen-restaurante" src = "'.$imagen.'" alt="'.$nombre.'">';
 		echo'<div class = "detalle-restaurante">';
 		echo'<p class = "">Nombre:'.$nombre.'</p>';
 		echo'<p class = "">Categoria:'.$categoria.'</p>';

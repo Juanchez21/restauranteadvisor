@@ -45,6 +45,8 @@ if (esAdmin() && isset($_GET['id']) && !isset($_POST['submit'])) {
 <head> <title>Index</title>
 	<meta charset = "UTF-8">
 	<link rel="stylesheet" type="text/css" href="/css/styles.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script src="js/scripts.js"></script>
 </head>
 <body>
 	<?php require ('comun/cabecera.php');?>
@@ -57,19 +59,19 @@ if (esAdmin() && isset($_GET['id']) && !isset($_POST['submit'])) {
 				<legend>Editar usuario</legend>
 					<label class="text-left">Usuario: </label>
 					<input type="text" value="<?php echo $usuarioModificar->getLogin(); ?>" name="login" class="text-right" required>
-					<br><br>
+					<div class="separator-line"></div>
 					<label class="text-left">Nombre: </label>
 					<input type="text" value="<?php echo $usuarioModificar->getNombre(); ?>" name="nombre" class="text-right" required>
-					<br><br>
+					<div class="separator-line"></div>
 					<label class="text-left">Contraseña: </label>
 					<input type="password" placeholder="Contraseña" name="password" class="text-right" required>
-					<br><br>
+					<div class="separator-line"></div>
 					<label class="text-left">Tipo: </label>
 					<div class="text-right">
 						<?php echo $radios ?>
 					</div>
-					<br><br>
-					<input type="hidden" value="<?php echo $usuarioModificar->getId(); ?>" name="id" required>
+					<div class="separator-line"></div>
+					<input type="hidden" value="<?php echo $usuarioModificar->getId(); ?>" name="id">
 					<button class="max-width" type="submit" name="submit">Editar</button>
 				</fieldset>
 				</form>

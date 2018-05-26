@@ -73,4 +73,3 @@ class tRestaurante {
 	public function getDescripcion(){ return $this->descripcion; }
 }
 ?>
-
