@@ -133,6 +133,22 @@ class DAORestaurante {
 		return false;
 	}
 
+	function getCategoriaByRestaurante($id_restaurante){
+		$conn = $this->db->conexionBD();
+		$query=sprintf("SELECT categoria FROM categoria_restaurante WHERE restaurante = ".$id_restaurante); 
+		$rs = $conn->query($query);
+		
+		if ($rs && $rs->num_rows > 0 ) {
+			$fila = $rs->fetch_assoc();
+			
+			$u = $fila['categoria'];
+			
+			$rs->free();
+			return $u;
+		}
+		return false;
+	}
+
 	function getCategoriaByIdRestaurante($id_restaurante) {
 		$conn = $this->db->conexionBD();
 		$query=sprintf("SELECT categoria FROM categoria_restaurante WHERE restaurante = ".$id_restaurante); 
@@ -217,30 +233,17 @@ class DAORestaurante {
 		$imagen = $restaurante->getImagen();
 		$tipo = $restaurante->getTipo();
 		$precio = $restaurante->getPrecio();
-		$editor = $restaurante->getEditor();
-		$portada = $restaurante->getPortada();
-		$orden_portada = $restaurante->getOrden();
 		$descripcion = $restaurante->getDescripcion();
 		
 		$sql = $this->db->conexionBD();
-		$query = "UPDATE " . $this->table . " SET nombre=? ,apertura=?, direccion=?, imagen=?, tipo=?, precio=?, editor=?, portada=?, orden_portada=?, descripcion=? WHERE id_restaurante=".$id;
+		$query = "UPDATE " . $this->table . " SET nombre=? ,apertura=?, direccion=?, imagen=?, tipo=?, precio=?, descripcion=? WHERE id_restaurante=".$id;
 		$stmt = $sql->prepare($query);
-		$stmt->bind_param("sssssiiiis", $nombre, $apertura, $direccion, $imagen, $tipo, $precio, $editor, $portada, $orden_portada, $descripcion);
+		$stmt->bind_param("sssssis", $nombre, $apertura, $direccion, $imagen, $tipo, $precio, $descripcion);
 
 		if($stmt->execute())
 			return true;
 		else
 			return false;
-	}
-
-	function deleteByIdRestaurante($id_restaurante)
-	{
-		$conn = $this->db->conexionBD();
-		$query=sprintf("DELETE FROM " . $this->table . " WHERE id_restaurante = ".$id_restaurante);
-		$rs = $conn->query($query);
-		if($rs)
-			return true;
-		return false;
 	}
 
 	function getByIdRestaurante($id_restaurante) {
@@ -270,8 +273,7 @@ class DAORestaurante {
 		return false;
 	}
 
-//funciona
-	function getRestauranteDestacados(){	/*ver como hacer para SOLO DESTACADOS*/
+	function getRestauranteDestacados(){	
 
 		$conn = $this->db->conexionBD();
 

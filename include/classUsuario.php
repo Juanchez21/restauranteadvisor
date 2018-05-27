@@ -13,18 +13,12 @@ class Usuario{
 	public function obtenerUsuario($id)
 	{
 		$usuario = new tUsuario();
-		//$usuario->setId($id);
 		return $this->daoUsuario->getById($id);
 	}
 
 	public function obtenerTodos()
 	{
 		return $this->daoUsuario->getAll();
-	}
-
-	public function actualizarUsuario($usuario)
-	{
-		return $this->daoUsuario->update($usuario);
 	}
 
 	public function borrarUsuario($id)
@@ -49,12 +43,10 @@ class Usuario{
 				$errores[1] = "El login usado no está registrado";
 			} else {
 				if(password_verify($user->getContrasena(), $usuario->getContrasena())){
-				//if (strcmp($password, $usuario->getContrasena()) == 0){
 					$_SESSION['sesion'] = true;
 					$_SESSION['userID'] = $usuario->getId();
 					$_SESSION['perfil'] = $usuario->getPerfil();
 					$_SESSION['nombre'] = $usuario->getNombre();
-					//$errorno = 0; // login correcto
 				} else {
 					$errores[2] = "La contraseña no es correcta";
 				}
@@ -85,7 +77,6 @@ class Usuario{
 				$errores[4] = "Se ha producido un error al dar de alta al usuario";
 		}
 		
-		//$result = array	('errors' => $errores,'data' => null);
 		return $errores;	
 	}
 	
@@ -108,7 +99,6 @@ class Usuario{
 				$errores[4] = "Se ha producido un error al dar de alta al usuario";
 		}
 		
-		//$result = array	('errors' => $errores,'data' => null);
 		return $errores;	
 	}
 	

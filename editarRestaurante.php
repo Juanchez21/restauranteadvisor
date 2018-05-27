@@ -3,12 +3,6 @@ require_once("include/config.php");
 require_once("include/classRestaurante.php");
 require_once("include/tRestaurante.php");
 
-/*NOS VIENE UN GET CON EL ID DEL RESTAURANTE, CREO QUE PONDRE QUE EN CADA CONETNEDOR OSE DESDE LA VISTA PERSONAL DEL
-RESTAURANTE, APAREZCA UN BOTON DE EDITAR RESTAURANTE Y TAL*/
-/*MENCIONAR QUE EL DATE-TIME-LOCAL-SOLO FUNCIONA EN GOOGLE CHROME Y IE EXPLORE CREO , PERO NO FIREFOX*/
-/*aunque creo que se refiere a la apertura de hora. osea solo time...xd*/
-/*es mas facil..*/
-
 $categoria1 ="";
 $categoria2 ="";
 $categoria3 ="";
@@ -16,11 +10,10 @@ $categoria4 ="";
 
 if (isset($_GET['id']) && !isset($_POST['submit'])) {
 	$id = $_GET['id'];
-	//echo 'VAMOS A EDITAR EL RESTURANTE CON IDENTIFICADOR: ' .$id . " ";
 	$classRest = new Restaurante();
 	$restauranteModificar = $classRest->obtenerUnRestaurante($id);
 	if (!$restauranteModificar){
-		echo "Algo ha salido mal 1...";
+		echo "Algo ha salido mal ,no se ha modificado correctamente...";
 	}
 	
 	$arrayCategorias = $classRest->categoriasRestaurante($id);
@@ -33,29 +26,19 @@ if (isset($_GET['id']) && !isset($_POST['submit'])) {
 		}
 	}
 }	
-	/*$radios="";
-	if($restauranteModificar->getPerfil() == 0) { // administrador
-		$radios.='<label><input type="radio" name="perfil" value="0" checked> administrador</label>
-						<label><input type="radio" name="perfil" value="1"> editor</label>';
-	}
-	else { // editor
-		$radios.='<label><input type="radio" name="perfil" value="0"> administrador</label>
-						<label><input type="radio" name="perfil" value="1" checked> editor</label>';
-	}*/
+	
 else{ 
 	if (isset($_POST['submit'])) {
 	
 	if (isset( $_POST['categoria1'] )) $categoria1 = $_POST['categoria1'];
-	if (isset( $_POST['categoria2'] )) $categoria1 = $_POST['categoria2'];
-	if (isset( $_POST['categoria3'] )) $categoria1 = $_POST['categoria3'];
-	if (isset( $_POST['categoria4'] )) $categoria1 = $_POST['categoria4'];
+	if (isset( $_POST['categoria2'] )) $categoria2 = $_POST['categoria2'];
+	if (isset( $_POST['categoria3'] )) $categoria3 = $_POST['categoria3'];
+	if (isset( $_POST['categoria4'] )) $categoria4 = $_POST['categoria4'];
 		
 	$id_rest = $_POST["id"];
-	//echo $id_rest;
 	$restaurante = new tRestaurante();
 	$claseRestaurante = new Restaurante();
 
-	/*foto*/
 	$type = 'jpg';
 	$perfilFoto = $_FILES['foto']['tmp_name'];
 	$name = 'img/'.$id_rest.'.'.$type;
@@ -82,16 +65,17 @@ else{
 	$restaurante->setNombre($_POST["nombre"]);
 	$restaurante->setDireccion($_POST["direccion"]);
 	$restaurante->setDescripcion($_POST["descripcion"]);
+	$restaurante->setTipo($_POST["tipo"]);
+	$restaurante->setPrecio($_POST["precio"]);
 	$restaurante->setImagen($foto_restaurante);
 
 	$error = $claseRestaurante->actualizarRestaurante($restaurante);
-	
 	$claseRestaurante->actualizarCategorias($restaurante->getId(), $categoria1, $categoria2, $categoria3, $categoria4);
 	
 	header("Location: /restaurante.php?id=$id_rest");
 	exit;
 }else{
-	echo "Algo ha salido mal 2...";
+	echo "Algo ha salido mal al enviar los datos...";
 	}
 }	
 ?>
@@ -109,7 +93,7 @@ else{
 		<?php require ('include/comun/menu_usuario.php');?>
 		<div class="portada">
 			<div class="login-form">
-				<form method="post" action="editarRestaurante.php" enctype="multipart/form-data">
+				<form method="post" action="editarRestaurante.php?id=<?php echo $restauranteModificar->getId(); ?>" enctype="multipart/form-data">
 				<fieldset>
 				<legend>Editar Restaurante</legend>
 					<label class="text-left">Nombre: </label>

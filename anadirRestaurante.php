@@ -19,10 +19,10 @@ if(isset($_POST['submit']) ){
 	$restaurante->setNombre($_POST["nombre"]);
 	$restaurante->setApertura($_POST["apertura"]);
 	$restaurante->setDireccion($_POST["direccion"]);
-	//if (isset($_POST["imagen"]))
+	if (isset($_POST["imagen"]))
 		$restaurante->setImagen($_POST["imagen"]);
-	//else
-		//$restaurante->setImagen("noimage.jpg");
+	else
+		$restaurante->setImagen("noimage.jpg");
 	$restaurante->setTipo($_POST["tipo"]);
 	$restaurante->setPrecio($_POST["precio"]);
 	$restaurante->setEditor($_SESSION['userID']);

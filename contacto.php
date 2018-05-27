@@ -15,7 +15,6 @@
 			<h1>Contacto</h1>
 			<fieldset class="formulario-contacto">
 				<legend>Formulario de contacto</legend>
-				<!--<form action="mailto:restauranteadvisor@gmail.com?subject=Consulta Skyeye: &body=" +Nombre +Email +Evaluación +Sugerencias +Críticas +Acepta +Consulta method="POST" enctype="text/plain"/>-->
 				<form action="mailto:restauranteadvisor@gmail.com?subject=Consulta_restauranteadvisor" method="POST" enctype="text/plain">
 					<div class="row">
 						<h4>Tu nombre:</h4>

@@ -41,17 +41,14 @@ if(esAdmin() && isset($_GET['id']) && isset($_POST['orden'])) {
 				</tr>
 				<?php
 					foreach($arrayRestaurantes as $restauranteDatos){
-						//$tipo = "Editor";
 						$id_rest = $restauranteDatos->getId();
 						$botonModificar = "<button type='submit' form='form1' value='submit'>Modificar</button>";
-						//$botonModificar = "<a href='portada.php?id=".$restauranteDatos->getId()."&orden=".$restauranteDatos->getOrden()."'>Modificar</a>";
 						echo "<tr>";
 							echo "<form action='portada.php?id=".$id_rest."&orden=".$restauranteDatos->getOrden()."' method='post' id='form1'>";
 							echo "<td>".$restauranteDatos->getCategoria()."</td>";
 							echo "<td>".$restauranteDatos->getNombre()."</td>";
 							echo "<td><input type='text' name='orden' value ='".$restauranteDatos->getOrden()."'></td>";
 							echo "<td>".$id_rest."</td>";
-							//echo "</form>";
 							echo "<td>".$botonModificar."</td>";
 						echo "</tr>";
 					}

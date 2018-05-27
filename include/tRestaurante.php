@@ -21,7 +21,9 @@ class tRestaurante {
 	private $editor = "";
 	
 	private $portada = "";
+
 	private $orden_portada = "";
+
 	private $descripcion = "";
 
 		
@@ -45,7 +47,9 @@ class tRestaurante {
 	public function setEditor( $editor ){ $this->editor = $editor; }	
 	
 	public function setPortada( $portada ){ $this->portada = $portada; }
+
 	public function setOrden( $orden_portada ){ $this->orden_portada = $orden_portada; }
+
 	public function setDescripcion( $descripcion ){ $this->descripcion = $descripcion; }
 
 	
@@ -69,7 +73,9 @@ class tRestaurante {
 	public function getEditor(){ return $this->editor; }	
 	
 	public function getPortada(){ return $this->portada; }
+
 	public function getOrden(){ return $this->orden_portada; }
+	
 	public function getDescripcion(){ return $this->descripcion; }
 }
 ?>

@@ -8,9 +8,6 @@
 			<li> <a class="plain-link" href="/verTodos.php"> Ver todos los restaurantes </a>
 			</li>
 			
-			<!--<li> <a class="plain-link" href="/editarRestaurante.php"> Editar restaurante </a>
-			</li>-->
-			
 			<li> <a class="plain-link" href="/anadirRestaurante.php"> Añadir restaurante </a>
 			</li>
 			<?php

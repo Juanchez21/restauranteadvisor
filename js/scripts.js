@@ -1,3 +1,6 @@
+/***
+***SCRIPTS DE FUNCIONES ESPECIFICAS ***
+***/
 function actualizar(idRestaurante, idParams) {
 	var port = 0;
 	if ($("#portada"+idParams).is(":checked"))

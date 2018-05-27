@@ -23,9 +23,7 @@ class Restaurante{
 		return $categoriasString;
 	}
 	
-	//restaurantes destacados
 	public function getAllRestaurantesDestacados(){
-		//return $this->daoRestaurante->getRestauranteDestacados();
 		$array= $this->daoRestaurante->getRestauranteDestacados();
 		$i = 0;
 		$num_total = count($array);
@@ -42,7 +40,6 @@ class Restaurante{
 				$nombresCategorias1 = $this->nombresCategorias($id1);
 			}
 
-			//echo '<table id="t1">';
 			echo'<tr>';
 			echo'	<th>Restaurante</th>';
 			if($i+1 < $num_total){ 
@@ -67,12 +64,10 @@ class Restaurante{
 				echo'	</td>';
 			}
 			echo'	</tr>';
-			//echo'</table>';
 			$i=$i+2;
 		}
 	}
 
-	/*probarlo*/
 	public function obtenerUnRestaurante($id)
 	{
 		$restaurante = new tRestaurante();
@@ -94,7 +89,6 @@ class Restaurante{
 	
 	public function obtenerTodosRestaurantes()
 	{
-		//return $this->daoRestaurante->getAllRestaurantes();
 		$array = $this->daoRestaurante->getAllRestaurantes();
 		$i = 0;
 		$num_total = count($array);
@@ -104,10 +98,9 @@ class Restaurante{
 			$id = $array[$i]->getId();
 			$direccion = $array[$i]->getDireccion();
 
-			$id_categoria = $this->daoRestaurante->getCategoriaByIdRestaurante($id);
+			$id_categoria = $this->daoRestaurante->getCategoriaByRestaurante($id);
 			$categoria = $this->daoRestaurante->getNombreCategoriaById($id_categoria);
 
-			//echo '<table id="t2">';
 			echo'<tr>';
 			echo'	<th>Restaurante</th>';
 			echo'	<th>Informacion</th>';
@@ -127,7 +120,6 @@ class Restaurante{
 			echo'	</td>';
 			
 			echo'	</tr>';
-			//echo'</table>';
 			$i++;
 		}
 	}
@@ -136,15 +128,11 @@ class Restaurante{
 	{
 		return $this->daoRestaurante->updateRestaurante($restaurante);
 	}
-
-	public function borrarRestaurante($id)
-	{
-		return $this->daoRestaurante->deleteByIdRestaurante($id);
-	}
 	
 	public function getRestaurantesByCategoria($id_categoria) {
-		//return $this->daoRestaurante->getByCategoriaRestaurantes($id_categoria);
+		
 		$array =  $this->daoRestaurante->getByCategoriaRestaurantes($id_categoria);
+		if($array){
 		$i = 0;
 		$num_total = count($array);
 		while($i < $num_total) {
@@ -155,7 +143,6 @@ class Restaurante{
 
 			// la foto y el nombre son links independientes
 			
-			//echo '<table id="t2">';
 			echo'<tr>';
 			echo'	<th>Restaurante</th>';
 			echo'	<th>Informacion</th>';
@@ -174,71 +161,15 @@ class Restaurante{
 			echo'	</td>';
 			
 			echo'	</tr>';
-			//echo'</table>';
 			$i++;
-			
-			// la fila entera es un link
-			/* 
-			echo'<tr><a href = "restaurante.php?id='. $id .'">';
-			echo'	<th>Restaurante</th>';
-			echo'	<th>Informacion</th>';
-
-			echo'</tr>';
-			echo'<tr>';
-			echo'	<td>';
-			echo'		<img class = "imagen" src = "'. $imagen.'" >';
-			echo'	</td>';
-			
-			echo'	<td>';
-			echo'		<div class = "info-restaurante-t2">';
-			echo'		<p class ="nombre-restaurante">Nombre:'. $nombre.'			</p>';
-			echo '<div class = "direccion-restaurante">Direccion: '. $direccion. '</div>';
-			echo'		</div>';
-			echo'	</td>';
-			
-			echo'	</a></tr>';
-			*/
 		}
+	}
 	}
 
 	public function insertarRestaurante(tRestaurante $restaurante){
 		return $this->daoRestaurante->insertRestaurante($restaurante);
 		//ahora con el atributo categoria , se agrega a la tabla de restaurante-categoria
 		
-	}
-
-	/*ver si el metodo insert de ambos DAOS sirven para algo o no? */
-
-	/*ESTA FUNCION ES PARA IMPRIMIR SLOS RESTAURANTES -> VER SI SE USA O NO */
-	public function mostrarRestaurantes($array_restaurantes){
-		$i = 0;
-		$num_total = count($array_restaurantes);
-		while($i < $num_total){
-			$nombre = $array_restaurantes[$i]->getNombre();
-			$categoria = $array_restaurantes[$i]->getCategoria();
-			$imagen = $array_restaurantes[$i]->getImagen();
-			
-			echo'<div class = "contenido">';
-			echo'<div class = "contenido-restaurante">';
-			echo'<img class = "imagen" src = "../';
-			echo $imagen.'" alt="'.$nombre.'">';		
-			echo'<div class = "info-restaurante">';
-			echo'<div class = "nombre-restaurante">Nombre:"';
-			echo $nombre.'"';
-			echo '</div>';
-			echo'<div class = "categoria-restaurante">Categoría:"'; 
-			echo $categoria.'"'.'</div>';
-			echo'</div>';
-			echo'</div>';
-			echo'<div class = "comentarios">';
-			echo'<div class = "text-comentarios">';
-			echo "Esto es un comentario";
-			echo'</div>';
-			echo'</div>';	
-			echo'</div>';
-
-			$i++;
-		}
 	}
 
 	public function mostrarRestaurante($restauranteClass, $id_restaurante){
@@ -249,9 +180,8 @@ class Restaurante{
 
 		$id_restaurante = $restaurante->getId();
 		$nombre = $restaurante->getNombre();
-		$id_categoria = $this->daoRestaurante->getCategoriaByIdRestaurante($id_restaurante);
+		$id_categoria = $this->daoRestaurante->getCategoriaByRestaurante($id_restaurante);
 		$categoria = $this->nombresCategorias($id_restaurante);
-		//$categoria = $this->daoRestaurante->getNombreCategoriaById($id_categoria);
 		$imagen = $restaurante->getImagen();
 		$tipo = $restaurante->getTipo();
 		$precio = $restaurante->getPrecio();
@@ -276,7 +206,7 @@ class Restaurante{
 
 		// si existe $_SESSION['userId'] y es igual al editor del restaurante
 		// no queda otra que el usuario logueado sea editor
-		if($_SESSION['userID'] == $id_editor){
+		if(isset($_SESSION['userID']) && $_SESSION['userID'] == $id_editor){
 		//if(esEditor() && ($_SESSION['userID'] == $id_editor)){
 			echo $botonEditar;
 		}
@@ -308,12 +238,6 @@ class Restaurante{
 
 	public function getComentariosByRestaurante($id_restaurante){
 		return $this->daoRestaurante->getComentariosByIdRestaurantes($id_restaurante);
-	}
-	public function mostrarRestaurantePequeno(tRestaurante $restaurante) {
-		// pendiente de hacer
-		//columna 1 <a>foto
-		//columna 2 <a>nombre</a>, direccion
-		//href = restaurante.php?id=restaurante.getId()
 	}
 
 	public function validaRestaurante($restaurante, $categoria1, $categoria2, $categoria3, $categoria4){
@@ -354,13 +278,13 @@ class Restaurante{
 	public function actualizarCategorias($id_r, $categoria1, $categoria2, $categoria3, $categoria4){
 		$this->daoRestaurante->deleteCategoriasRestaurante($id_r);
 		
-		if (strcmp($categoria1, "") == 0)
+		if (strcmp($categoria1, "") !== 0)
 			$this->daoRestaurante->instertCategoriaRestaurante($id_r, $categoria1);
-		if (strcmp($categoria2, "") == 0)
+		if (strcmp($categoria2, "") !== 0)
 			$this->daoRestaurante->instertCategoriaRestaurante($id_r, $categoria2);
-		if (strcmp($categoria3, "") == 0)
+		if (strcmp($categoria3, "") !== 0)
 			$this->daoRestaurante->instertCategoriaRestaurante($id_r, $categoria3);
-		if (strcmp($categoria4, "") == 0)
+		if (strcmp($categoria4, "") !== 0)
 			$this->daoRestaurante->instertCategoriaRestaurante($id_r, $categoria4);
 	}
 }

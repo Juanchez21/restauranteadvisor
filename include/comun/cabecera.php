@@ -10,7 +10,6 @@ else{
 <div class="cabecera">
 	<ul class="head-menu">
 		<li>
-			<!--<a class="vertical-centered plain-link white-link" href="index.php">LOGO</a>-->
 			<a href="index.php"><img class = "logo" src="../img/ICON.png" alt="logo" ></a>
 		</li>
 		<li>
