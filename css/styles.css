@@ -38,7 +38,7 @@ ul.head-menu li {
 	height: 100%;
 	font-size: large;
 	font-weight: bold;
-	width: 10%;/*antes 14%*/
+	width: 12%;
 	text-align: center;
 }
 ul.head-menu li a{
@@ -153,21 +153,16 @@ div.contenido-restaurante{
 .imagen{
 	height: 200px;
 	width: 300px;
-	/*border: 3px solid skyblue;*/
+	border: 3px solid skyblue;
 }
 
 div.info-restaurante {
-	/*font-family: "Times New Roman", Times, serif;*/ 
-	/*ya no es necesario*/
-	font-size: 20px;
+	font-size: 18px;
 	width: 30%;
 	float: right;
 	clear: right;
-	border: 5px solid green;
 }
 div.nombre-restaurante , div.categoria-restaurante{
-	/*font-family: "Times New Roman", Times, serif;*/
-	/*ya no es necesario*/
 	font-family: "Times New Roman", Georgia, serif;
 }
 div.comentarios{	
@@ -175,16 +170,18 @@ div.comentarios{
 }
 .comentarios div.text-comentarios{
 	font-family: Courier, Monaco, monospace;
-	font-size: 20px;
+	font-size: 16px;
 	padding:5px;
-	height: 100%;
-	width: 80%;
-	border: 5px solid red;
+	height: 80%;
+	width: 50%;
+	margin-top: 5px;
+	border: 3px solid blue;
+	border-radius: 15px;
 }
 
 .logo{
-	width:125px; 
-	height:60px;
+	width:145px; 
+	height:55px;
 }
 
 table, th, td {
@@ -203,18 +200,16 @@ table#t1 td{
 }
 
 .imagen-t2{
-	height: 250px;
-	width: 400px;
+	height: 100%;
+	width: 98%;
+	border: 3px solid skyblue;
 }
 
 div.info-restaurante-t2{
-	/*font-family: "Times New Roman", Times, serif;*/ 
-	/*ya no es necesario*/
 	padding:0px;
-	font-size: 20px;
+	font-size: 18px;
 	height: 250px;
 	width: 400px;
-	border: 5px solid green;
 }
 
 .nombre-restaurante{
@@ -238,18 +233,22 @@ div.contenido{
 	margin-bottom: 5%;
 	height: 100%;
 	width: 90%;
-	border: 5px solid blue;
 }
 
 div.detalle-restaurante{
+	margin:0px;
 	height: 80%;
 	width: 40%;
 	padding: 5px;
 	float: right;
 	clear: right;
-	font-size: 20px;
+	font-size: 18px;
+	border: 3px solid blue;
+	border-radius: 10px;
 }
 .imagen-restaurante{
 	height: 300px;
 	width: 500px;
+	border: 5px solid skyblue;
+	border-radius: 10px;
 }
